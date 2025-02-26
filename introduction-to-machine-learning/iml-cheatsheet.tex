@@ -1,0 +1,705 @@
+% Basic stuff
+\documentclass[a4paper,11pt]{article}
+\usepackage[nswissgerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{titlesec}
+
+% 3 column landscape layout with fewer margins
+\usepackage[landscape, left=0.5cm, top=0.5cm, right=0.5cm, bottom=0.5cm, footskip=15pt]{geometry}
+\usepackage{flowfram}
+\ffvadjustfalse
+\setlength{\columnsep}{0.25cm}
+\Ncolumn{4}
+
+% Make cells in tables colored
+\usepackage{colortbl}
+\usepackage{xcolor}
+
+
+% define nice looking boxes
+\usepackage[many]{tcolorbox}
+
+% a base set, that is then customised
+\tcbset {
+  base/.style={
+    boxrule=0mm,
+    leftrule=1mm,
+    left=1.75mm,
+    arc=0mm, 
+    fonttitle=\bfseries, 
+    colbacktitle=black!10!white, 
+    coltitle=black, 
+    toptitle=0.75mm, 
+    bottomtitle=0.25mm,
+    title={#1}
+  }
+}
+
+\usepackage[T1]{fontenc}
+\usepackage[nswissgerman]{babel}
+\usepackage{gensymb}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{changepage}
+
+\usepackage{zref-totpages}
+\makeatletter
+
+\pagenumbering{gobble}
+%\renewcommand{\@evenfoot}{\hfil \thepage{}/\ztotpages\hfil}
+%\renewcommand{\@oddfoot}{\@evenfoot}
+\makeatother
+
+
+% define nice looking boxes
+\usepackage[many]{tcolorbox}
+
+% a base set, that is then customised
+
+\tcbset {
+  base/.style={
+    boxrule=0mm,
+    leftrule=0mm,
+    left=1.75mm,
+    arc=1mm, 
+    fonttitle=\bfseries, 
+    colbacktitle=black!10!white, 
+    coltitle=black, 
+    toptitle=0.75mm, 
+    bottomtitle=0.25mm,
+    title={#1}
+  }
+}
+
+\definecolor{bluetitle}{RGB}{210, 235, 255}
+\definecolor{blueframe}{RGB}{146, 208, 255}
+\definecolor{blueback}{RGB}{236, 247, 255}
+\newtcolorbox{mainbox}[1]{
+  colframe=blueframe, 
+  base={#1},
+  colbacktitle=bluetitle,
+  colback=blueback,
+  left=4pt, right=4pt, top=4pt, bottom=3pt, % Inner padding
+}
+
+\definecolor{pri}{RGB}{5, 94, 145}
+\definecolor{sec}{RGB}{49,178,165}
+\definecolor{tri}{RGB}{0, 172, 219}
+\definecolor{qua}{RGB}{0, 227, 167}
+
+\definecolor{prisub}{RGB}{4, 121, 189}
+
+\definecolor{posTable}{RGB}{0, 227, 167}
+\definecolor{negTable}{RGB}{5, 94, 145}
+
+\newtcolorbox{subbox}[1]{
+  colframe=black!20!white,
+  base={#1}
+}
+
+% Ensure that \subsection* behaves correctly
+\titleformat{name=\subsection,numberless}[block]
+  {\color{pri}\normalfont\bfseries} % Format of subsection title: normal font, large size, bold
+  {}                           % No subsection number for starred versions
+  {0em}                        % Space between number and title (none)
+  {\MakeUppercase}             % Transform title to uppercase
+
+\titleformat{\subsubsection}
+  {\color{prisub}\normalfont\itshape}
+  {}{0em}{}  
+
+
+% Mathematical typesetting & symbols
+\usepackage{amsthm, mathtools, amssymb} 
+\usepackage{marvosym, wasysym}
+%\usepackage{derivative}
+\newcommand{\pdv}[2]{\frac{\partial #1}{\partial #2}}
+
+% Title Spacing
+\titlespacing*{\section}
+  {0pt}{4pt}{1pt}  
+\titlespacing*{\subsection}
+  {0pt}{5pt}{1pt}  % Adjust these values as needed
+\titlespacing*{\subsubsection}
+  {0pt}{3pt}{1pt}  % Adjust these values as needed
+
+
+\renewcommand{\baselinestretch}{0.8} 
+
+% Tables
+\usepackage{tabularx, multirow}
+\usepackage{arydshln}
+\usepackage{rotating}
+\usepackage{booktabs}
+
+% Make enumerations more compact
+\usepackage{enumitem}
+\setitemize{itemsep=-3pt, topsep=1pt}   % Spacing between itemize
+\setenumerate{itemsep=-3pt, topsep=1pt} % Spacing between enumerations
+\setlist[itemize,1]{leftmargin=15pt}    % Indentiation enumerations, level 1
+\setlist[enumerate,1]{leftmargin=15pt}  % Indentiation enumerations, level 1
+\setlist[itemize,2]{leftmargin=5pt}    % Indentiation enumerations, level 2
+\setlist[enumerate,2]{leftmargin=5pt}  % Indentiation enumerations, level 2
+
+% To include sketches & PDFs
+\usepackage{graphicx}
+
+% For hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true
+}
+
+% Metadata
+\title{Introduction to Machine Learning}
+\author{by Silvan Metzker}
+\date{June 2024}
+
+% Math helper stuff
+\def\limn{\lim_{n\to \infty}}
+\def\limxo{\lim_{x\to 0}}
+\def\limxi{\lim_{x\to\infty}}
+\def\limxn{\lim_{x\to-\infty}}
+\def\sumk{\sum_{k=1}^\infty}
+\def\sumn{\sum_{n=0}^\infty}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\X{\mathcal{X}}
+\def\dx{\text{ d}x}
+
+% Disable the automatic text indent
+\setlength{\parindent}{0pt}
+
+% Make text/math much more compact
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+
+\begin{document}
+
+% Reduce space before and after math
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+% Reduce spacing inside align
+\setlength{\jot}{0pt}
+
+% Reduce space before and after tables
+\setlength{\textfloatsep}{0pt}     % Space between floats and text
+\setlength{\intextsep}{0pt}        % Space above and below in-text tables
+\setlength{\abovecaptionskip}{0pt} % Space between table caption and table
+\setlength{\belowcaptionskip}{0pt} % Space below table caption
+
+\subsection*{Model Error}
+\textbf{Empirical Risk:} 
+$$\textstyle \hat{R}_{\mathcal{D}}(w)=\sum_{i=1}^n\left(w^{\top} x_i-y_i\right)^2$$
+\textbf{Generalisation Error (Pop. Risk):}
+$$L\left(f ; \mathbb{P}_{X, Y}\right)=\mathbb{E}_{X, Y} \ell(f(X), Y)$$
+
+\textbf{Bias-Variance Tradeoff:} \\
+$\mathbb{E}_{\mathcal{D}}[L(\hat{f} ; \cdot)]= \textcolor{pri}{\mathbb{E}_{X, \mathcal{D}}[(\hat{f}(X)- \mathbb{E}_{\mathcal{D}}[\hat{f}(X)])^2]}$\\
+\makebox[10pt][l]{} $+\  \textcolor{sec}{\mathbb{E}_X[(\mathbb{E}_{\mathcal{D}}[\hat{f}(X)]-f^*(X))^2]} + \textcolor{tri}{\sigma}$\\
+\makebox[10pt][l]{} $= \textcolor{pri}{\operatorname{Var}_{\mathcal{D}}(\hat{f})} + \textcolor{sec}{\operatorname{Bias}_{\mathcal{D}}^2(\hat{f})} + \textcolor{tri}{\text{Noise}}$\\
+\textbf{Least Squares:} $\mathbf{X}^{\top} \mathbf{X} \mathbf{w} = \mathbf{X}^{\top} \mathbf{y}$
+
+\vspace{5pt}
+\begin{tikzpicture}
+  \begin{axis}[
+    domain=-3:3,
+    samples=100,
+	xtick=\empty,
+    ytick=\empty,
+    xticklabels=\empty,
+    yticklabels=\empty,
+    xlabel={},
+    ylabel={},
+    enlargelimits={abs=0},
+    axis line style={draw=black}, % Keep the border
+    clip=true, % Allow plotting to the very edge
+    scale only axis,
+    legend style={at={(1, 1)},anchor=north east, 
+                 font=\footnotesize, % Adjust the font size
+                 nodes={scale=1, transform shape}, % Scale down the text
+                 legend cell align=left, % Align text to the left
+                 /tikz/every even column/.append style={column sep=0.5cm}}, % Increase column separation
+    legend image post style={xscale=0.25}, % Shorten legend lines
+    width=6.9cm, % Make the diagram smaller
+    height=4cm, % Adjust height proportionally
+    ymax = 5
+    ]
+	
+	% Exponential Loss
+    \addplot[color=black, ultra thick] {exp(-x)};
+    \addlegendentry{Exponential Loss, $ e^{-x} $}
+
+    % Hinge Loss
+    \addplot[color=pri, ultra thick] {max(0, 1-x)};
+    \addlegendentry{Hinge Loss, $ \max(0, 1-x) $}
+
+    % Squared Loss
+    \addplot[color=sec, ultra thick] {0.5*(1-x)^2};
+    \addlegendentry{Squared Loss, $ \frac{1}{2}(1-x)^2 $}
+
+    % Logistic Loss
+    \addplot[color=tri, ultra thick] {ln(1 + exp(-x))};
+    \addlegendentry{Logistic Loss, $ \ln(1 + e^{-x}) $}
+
+    % Zero-One Loss
+    \addplot[color=qua, ultra thick, domain=-3:0] {1};
+    \addplot[color=qua, ultra thick, domain=0:3] {0};
+    \addlegendentry{Zero-One Loss, $ \mathbf{1}_{\{x < 0\}} $}
+
+  \end{axis}
+\end{tikzpicture}
+
+\subsection*{Regularization}
+\textbf{Lasso Regression (sparse):}
+$$
+\min _{\boldsymbol{w} \in \mathbb{R}^d}\left(\|\boldsymbol{y}-\boldsymbol{X} \boldsymbol{w}\|_2^2+\lambda\|\boldsymbol{w}\|_1\right)
+$$
+
+\textbf{Ridge Regression (more precise):}
+$$
+\begin{aligned}
+& \min _{w \in \mathbb{R}^d}\left(\|\boldsymbol{y}-\boldsymbol{X} \boldsymbol{w}\|_2^2+\lambda\|\boldsymbol{w}\|_2^2\right)\\
+& \nabla_w L(w) = 2 \mathbf{X}^{\top} (\mathbf{X} w - \mathbf{y}) + 2 \lambda \mathbf{w}
+\end{aligned}
+$$
+
+\textit{Solution:} $\hat{\mathbf{w}} = (\mathbf{X}^{\top} \mathbf{X} + \lambda \mathbf{I})^{-1} \mathbf{X}^{\top} \mathbf{y}$
+
+large $\lambda \Rightarrow$ larger bias, smaller variance
+
+
+\subsubsection*{$K$-Fold Cross-Validation}
+Split Dataset into $K$ sets (\# methods), for each method, go through all sets and train it excluding that set and validating that set. Sum up all the validation errors of that method and choose smallest sum.
+
+
+\subsection*{Gradient Descent}
+Converges only for convex case.
+$$
+\mathbf{w}^{t+1}=\mathbf{w}^t-\eta_t \cdot \nabla \ell(\mathbf{w}^t)
+$$
+
+For linear regression:
+$$
+\|\mathbf{w}^t-\mathbf{w}^*\|_2 \leq \|\mathbf{I}-\eta \mathbf{X}^{\top} \mathbf{X}\|_{op}^t \|\mathbf{w}^0-\mathbf{w}^*\|_2
+$$
+$\exists\eta$ with conv. speed $\rho=\|\mathbf{I}-\eta \mathbf{X}^{\top} \mathbf{X}\|_{op}^t$.\\
+$\eta_{\text{opt}}=\frac{2}{\lambda_{\min }+\lambda_{\max }}$ and max. $\eta \leq \frac{2}{\lambda_{\max }}$.\\
+Momentum: 
+$$
+\mathbf{w}^{t+1}=\mathbf{w}^t+\gamma \Delta \mathbf{w}^{t-1}-\eta_t \nabla \ell(\mathbf{w}^t)
+$$
+
+\subsection*{Maximum-Margin Solution}
+If linearly separable, we can get:
+$$\boldsymbol{w}_{\mathrm{MM}}:=\underset{\|\boldsymbol{w}\|_2=1, w_0}{\arg \max } \min _{1 \leq i \leq n} y_i(\boldsymbol{w}^\top\boldsymbol{x}_i+w_0)$$
+
+\textbf{Hard SVM}
+
+$\hat{\mathbf{w}} = \min _{\mathbf{w}} \|\mathbf{w}\|_2$ s.t. $\forall i, y_i \mathbf{w}^{\top} \mathbf{x}_i \geq 1$
+
+\textbf{Soft SVM (allows ``slack'' in constraints)}\\
+$\hat{\mathbf{w}} = \min _{\mathbf{w}, \xi} \frac{1}{2}\|\mathbf{w}\|_2^2 + \lambda \overset{n}{\underset{i=1}{\Sigma}} \max \left(0, 1 - y_i \mathbf{w}^{\top} \mathbf{x}_i\right)$
+
+\setlength{\tabcolsep}{4pt}
+\begin{table}[h!]
+    \begin{tabular}{@{}cccl@{}}
+    	 \textbf{Metrics} & \multicolumn{2}{c}{True Class $\gamma$} & err$_1$/FPR:$\frac{\mathrm{FP}}{\mathrm{TN}+\mathrm{FP}}$\\ 
+          & $\gamma$=+1 & $\gamma$=-1 & err$_2$/FNR:$\frac{\mathrm{FN}}{\mathrm{TP}+\mathrm{FN}}$\\ 
+        \multirow{2}{*}[1.3 ex] f(x)=+1 & \cellcolor{posTable!30}TP & \cellcolor{negTable!30}FP & Precision $: \frac{\mathrm{TP}}{\mathrm{TP}+\mathrm{FP}}$ \\
+         f(x)=+1 & \cellcolor{negTable!30}FN & \cellcolor{posTable!30}TN  & TPR/Recall: $\frac{\mathrm{TP}}{\mathrm{TP}+\mathrm{FN}}$\\
+    \end{tabular}
+\end{table}
+
+\textbf{ROC:} Plot TPR=1-FNR vs. FPR and compare different ROC's with area under the curve. \\
+\textbf{F1-Score:} $\frac{2 \mathrm{TP}}{2 \mathrm{TP}+\mathrm{FP}+\mathrm{FN}}$, Accuracy : $\frac{\mathrm{TP}+\mathrm{TN}}{\mathrm{P}+\mathrm{N}}$ \\
+Goal: large recall and small FPR.
+
+\subsection*{Kernels}
+$\exists \widehat{\boldsymbol{\alpha}}.\ \widehat{\mathbf{w}} = \mathbf{\Phi}^{\top} \widehat{\boldsymbol{\alpha}}$, $\mathbf{K} = \mathbf{\Phi} \mathbf{\Phi}^{\top}$, \textbf{Validity:}
+\begin{enumerate}
+    \item $\mathbf{K}$ symmetric, $\forall x, z. \ k(x, z)=k(z, x)$
+    \item $\mathbf{K}$ positive semidef. (psd.), $\forall \mathbf{z}. \ \mathbf{z}^{\top} \mathbf{K} \mathbf{z}>0$
+\end{enumerate}
+\textbf{lin.}: $k(x, z) = x^{\top} z$, \textbf{poly.}: $k(x, z) = \left(x^{\top} z + 1\right)^m$
+
+$\exp\left(-\frac{\left\|\mathbf{x} - \mathbf{z}\right\|_p^2}{\tau}\right) = 
+\begin{cases}
+     \textbf{Laplacian Ker.} & p=1\\
+     \textbf{Gauss./RBF K.} & p=2
+\end{cases}$\\
+\textit{Composition Rules:}\\
+$k = k_1 + k_2, \enskip k = k_1 \cdot k_2, \enskip c > 0 \Rightarrow k = c \cdot k_1$\\
+$f$ convex; $f$ polynomial or $\exp \Rightarrow k = f\left(k_1\right)$\\
+$\forall f . k(x, y) = f(x) k_1(x, y) f(y)$\\
+\textbf{Mercer's Theorem:} Valid kernels can be decomposed into a lin. comb. of inner products. \\
+\textbf{Kern. Ridge Reg.:} $\frac{1}{n}\|y - \mathbf{K} \alpha\|_2^2 + \lambda \alpha^{\top} \mathbf{K} \boldsymbol{\alpha}$
+
+\subsection*{KNN Classification}
+\begin{enumerate}
+	\item Pick $k$ and distance metric $d$
+	\item For given $x$, find among $x_1, \ldots, x_n \in D$ the $k$ closest to $x \rightarrow x_{i_1}, \ldots, x_{i_k}$
+	\item Output the majority vote of labels.
+\end{enumerate}
+\subsection*{Neural Networks}
+$\mathbf{w}$ are the weights and $\varphi: \mathbb{R} \mapsto \mathbb{R}$ is a \textit{nonlinear activation function}: $\phi(\mathbf{x}, \mathbf{w})=\varphi\left(\mathbf{w}^{\top} \mathbf{x}\right)$ \\
+\textbf{ReLU}: $\max (0, z)$, \textbf{Tanh}: $\frac{\exp (z)-\exp (-z)}{\exp (z)+\exp (-z)}$ \\
+\textbf{Sigmoid:} $\frac{1}{1+\exp (-z)}$ \\
+Rand. init. weights by distr. assumption for $\varphi$. \\
+ReLu: $2 / n_{\text {in }}$; Tanh: $1 / n_{\text {in }}$ or $1 /\left(n_{\text {in }}+n_{\text {out }}\right)$\\
+\textbf{Universal Approximation Theorem:}\\
+We can approximate any arbitrary smooth target function, with 1+ layer with sufficient width.
+\subsubsection*{Forward Propagation}
+Input: $\mathbf{v}^{(0)}=[\mathbf{x} ; 1] \quad$ Output: $f=\mathbf{W}^{(L)} \mathbf{v}^{(L-1)}$
+Hidden: $\mathbf{z}^{(l)}=\mathbf{W}^{(l)} \mathbf{v}^{(l-1)}, \mathbf{v}^{(l)}=\left[\varphi\left(\mathbf{z}^{(l)}\right) ; 1\right]$
+\subsubsection*{Backpropagation} 
+Non-convex; \textcolor{pri}{Reuse}, \textcolor{tri}{Compute}, \textcolor{sec}{Forward Pass}
+$$
+\begin{aligned}
+\left(\nabla_{\mathbf{W}^{(L)}} \ell\right)^\top \textstyle  \!=\!  \frac{\partial \ell}{\partial \mathbf{W}^{(L)}} & \textstyle \!=\!  \textcolor{tri}{\frac{\partial \ell}{\partial f}}  \textcolor{sec}{\frac{\partial f}{\partial \mathbf{W}^{(L)}}} \\
+\left(\nabla_{\mathbf{W}^{(L-1)}} \ell\right)^\top \textstyle  \!=\!  \frac{\partial \ell}{\partial \mathbf{W}^{(L-1)}} & \textstyle  \!=\!  \textcolor{pri}{\frac{\partial \ell}{\partial f}}  \textcolor{tri}{\frac{\partial f}{\partial \mathbf{z}^{(L-1)}}}  \textcolor{sec}{\frac{\partial \mathbf{z}^{(L-1)}}{\partial \mathbf{W}^{(L-1)}}} \\
+\left(\nabla_{\mathbf{W}^{(L-2)}} \ell\right)^\top \textstyle  \!=\!  \frac{\partial \ell}{\partial \mathbf{W}^{(L-2)}} & \textstyle \!=\!  \textcolor{pri}{\frac{\partial \ell}{\partial f}}  \textcolor{pri}{\frac{\partial f}{\partial \mathbf{z}^{(L-1)}}}  \textcolor{tri}{\frac{\partial \mathbf{z}^{(L-1)}}{\partial \mathbf{z}^{(L-2)}}}  \textcolor{sec}{\frac{\partial \mathbf{z}^{(L-2)}}{\partial \mathbf{W}^{(L-2)}}}
+\end{aligned}
+$$
+
+\subsubsection*{Overfitting Prevention}
+\textbf{Regularization:} See lasso/ridge regression.\\
+\textbf{Early Stopping:} Stops training upon converg.\\
+\textbf{Dropout:} Deactiv. neurons rand. during train.\\
+\textbf{Batch Norm.:} Norm. layer inputs $\mu\!=\!0, \sigma\!=\!1$. 
+
+\subsubsection*{CNNs $\quad \varphi\left(\mathbf{W} * v^{(l)}\right)$} 
+The output dimension when applying $m$ different $f \times f$ filters to an $n \times n$ image with padding $p$ and stride $s$ is: $l=\frac{n+2 p-f}{s}+1$ For each channel there is a separate filter. 
+\subsection*{Unsupervised Learning} 
+\subsubsection*{$k$-Means Clustering}
+Optimization Goal (non-convex):
+$$
+\textstyle \hat{R}(\mu)=\sum_{i=1}^n \min _{j \in\{1, \ldots, k\}}|| x_i-\mu_j \|_2^2
+$$
+\textbf{Lloyd's heuristics:} Init. cluster centers $\mu^{(0)}$
+\begin{itemize}
+    \item Assign points to closest center
+    \item Update $\mu_i$ as mean of assigned points
+\end{itemize}
+Converges in exp. time\\
+\textbf{Init. with k-Means++:}
+\begin{itemize}
+    \item Rand. data point $\mu_1=x_i$
+    \item Add $\mu_2, \ldots, \mu_k$ rand., with probability:\\
+    Given $\mu_{1:j}$, pick $\mu_{j+1}=x_i$ where $p(i)=\frac{1}{z} \min_{l \in \{1, \ldots, j\}} ||x_i-\mu_l||_2^2$. E.g. further away from any centroid, higher chance.
+\end{itemize}
+Converges in expectation $\mathcal{O}(\log k) \times \text{sol.}_\text{opt}$ 
+Find $k$ by negligible loss decrease or reg.
+
+\subsection*{Principal Component Analysis}
+$$
+\textstyle\arg \min _{\substack{\mathbf{W} \in \mathbb{R}^{d \times k}: 
+\mathbf{W}^{\top}\mathbf{W}=I_k \\ \mathbf{z}_1, \ldots, \mathbf{z}_n \in 
+\mathbb{R}^k}} \sum_{i=1}^n\left\|\mathbf{x}_i-\mathbf{W} 
+\mathbf{z}_i\right\|_2^2,
+$$
+where ($v_{i}$ are eigenvectors)
+$$
+\mathbf{W}^{*}=\left(\mathbf{v}_1|\cdots| \mathbf{v}_k\right), \quad 
+\mathbf{z}_i^{*}=\mathbf{W}^{*\top} \mathbf{x}_i .
+$$
+Principal eigenvector ($\mathbf{v}_{1}$) shows into the direction of greatest variance in the data. The error is the deviation from it. Alternatively:
+$$ 
+\mathbf{W}^* = \arg \max_{\mathbf{W}^{\top} \mathbf{W} = \mathbf{I}_k} \mathrm{tr}(\mathbf{W}^{\top} \Sigma \mathbf{W}),
+$$
+
+Where $\mathbf{\Sigma} = \frac{1}{n} \sum_{i=1}^n \mathbf{x}_i \mathbf{x}_i^{\top}$ is the empirical covariance. Closed form solution given by $\mathbf{w} = \mathbf{v}_1$ for $\lambda_1 \geq \ldots \geq \lambda_d \geq 0: \mathbf{\Sigma} = \sum_{i=1}^d \lambda_i \mathbf{v}_i \mathbf{v}_i^{\top}$.
+
+For $k > 1$, we only take the first $k$ principal eigenvectors, such that $\mathbf{W}^*\!=\![\mathbf{v}_1, \ldots, \mathbf{v}_k]$.
+
+In \textbf{SVD} the solution is given by the first $k$ columns of $\mathbf{V}$, with $\mathbf{X}=\mathbf{USV}^\top$.
+
+\subsubsection*{Kernel PCA}
+$$\text{Ansatz: } \textstyle \boldsymbol{w}\!=\! \sum_{j=1}^n \alpha_j \phi\left(\boldsymbol{x}_j\right)\Rightarrow \|\boldsymbol{w}\|_2^2 \!=\! \boldsymbol{\alpha}^\top \boldsymbol{K} \boldsymbol{\alpha}$$
+$$\textstyle \boldsymbol{\alpha}^*=\underset{{\boldsymbol{\alpha}^\top \boldsymbol{K} \boldsymbol{\alpha}=1}}{\operatorname{argmax}} \boldsymbol{\alpha}^\top \boldsymbol{K}^\top \boldsymbol{K} \boldsymbol{\alpha}=\underset{{\boldsymbol{\alpha}^\top  \boldsymbol{\alpha}=1}}{\operatorname{argmax}} \frac{\boldsymbol{\alpha}^\top \boldsymbol{K}^\top \boldsymbol{K} \boldsymbol{\alpha}}{\boldsymbol{\alpha}^\top \boldsymbol{K} \boldsymbol{\alpha}}$$
+Closed form, with $\lambda_1 \geq \cdots \geq \lambda_n$:
+$$\textstyle \boldsymbol{\alpha}^*=\frac{1}{\sqrt{\lambda_1}} \boldsymbol{v}_1 \text { for } K=\sum_{i=1}^n \lambda_i \boldsymbol{v}_i \boldsymbol{v}_i^T$$
+\subsubsection*{Autoencoders}
+Use a NN with smaller hidden layer than input size = output size to find a optimal subspace.
+$$\textstyle \min_{\hat{\mathbf{x}}}\frac{1}{n} \sum_{i=1}^n\left\|\mathbf{x}_i-\hat{\mathbf{x}}_i\right\|_2^2, \text{ lin. activ. f.} \Rightarrow \text{PCA}$$  
+
+\subsection*{MLE \& MAP}
+
+\subsubsection*{Maximum Likelihood Estimation (MLE)}
+(*) if discriminative, $p(a \mathbf{;} b)$ since frequentist
+$$
+\begin{aligned}
+\widehat{\theta}_{\text{MLE}} &\mathrlap{{}\textstyle:=\underset{\theta \in \Theta}{\arg \max } p(\mathcal{D} ; \theta)} \\
+& \textstyle \stackrel{\text{iid}}{=} \underset{\theta \in \Theta}{\arg \max } \prod_{i=1}^n p(\boldsymbol{x}_i, y_i ; \theta) \\
+& \textstyle \overset{*}{=}\underset{\theta \in \Theta}{\arg \min } \sum_{i=1}^n \!-\log p(y_i \mid \boldsymbol{x}_i ; \theta),
+\end{aligned}
+$$
+
+\subsubsection*{Maximum A Posteriori Estimator (MAP)}
+(*) if discriminative, $p(a|b)$ since bayesian
+$$
+\begin{aligned}
+\widehat{\theta}_{\text{MAP}} &\mathrlap{{}\textstyle:=\underset{\theta \in \Theta}{\arg \max } p(\theta| \mathcal{D}) = \underset{\theta \in \Theta}{\arg \max } p(\mathcal{D} | \theta) p(\theta)} \\
+&\textstyle \stackrel{\text{iid}}{=} \underset{\theta \in \Theta}{\arg \max }\left(\prod_{i=1}^n p(\boldsymbol{x}_i, y_i \mid \theta)\right) \cdot p(\theta) \\
+&\textstyle \stackrel{*}{=}\underset{\theta \in \Theta}{\arg \min } \sum_{i=1}^n \text{-}\log p(y_i \mid \boldsymbol{x}_i, \theta) \text{ -}\log p(\theta)
+\end{aligned}
+$$
+
+\subsubsection*{Regression with MLE/MAP}
+
+\begin{gather*}
+	\textstyle \widehat{\theta}_\text{MLE}=\underset{\theta \in \Theta}{\arg \min } \sum_{i=1}^n\left(y_i-f\left(\boldsymbol{x}_i ; \theta\right)\right)^2\\
+	\textstyle \widehat{\theta}_\text{MAP}=\underset{\theta \in \Theta}{\arg \min } \sum_{i=1}^n\left(y_i-f\left(x_i ; \theta\right)\right)^2+\frac{\sigma_{\varepsilon}^2}{\sigma_\theta^2}\|\theta\|_2^2	
+\end{gather*}
+Regularization can be understood as MAP inference, with different priors ( $=$ regularizers) and likelihoods ( $=$ loss functions).
+\subsubsection*{Statistical Models for Classification}
+$f$ minimizing the population risk:
+$$
+f^*(\mathbf{x})=\operatorname{argmax}_{\hat{y}} p(\hat{y} \mid \mathbf{x})
+$$
+
+This is called the Bayes' optimal predictor for the 0-1 loss. Assuming iid. Bernoulli noise, the conditional probability is:
+$$
+p(\mathbf{y} \mid \mathbf{x}, \mathbf{w}) \sim \operatorname{Ber}\left(y ; \sigma\left(\mathbf{w}^{\top} \mathbf{x}\right)\right)
+$$
+
+Where $\sigma(z)=\frac{1}{1+\exp (-z)}$ is the sigmoid function. Using MLE we get:
+$$
+\textstyle \hat{\mathbf{w}}=\underset{\mathbf{w}}{\operatorname{argmin}} \sum_{i=1}^n \log \left(1+\exp \left(-y_i \mathbf{w}^{\top} \mathbf{x}_i\right)\right)
+$$
+
+Which is the logistic loss. Instead of MLE we can estimate MAP, e.g. with a Gaussian prior:
+$$
+\textstyle \hat{\mathbf{w}}=\underset{\mathbf{w}}{\operatorname{argmin}} \lambda\|\mathbf{w}\|_2^2+\sum_{i=1}^n \log \left(1+e^{-y_i \mathbf{w}^{\top} \mathbf{x}_i}\right)
+$$
+
+\subsection*{Bayesian Decision Theory}
+Given $p(\mathbf{y} \mid \mathbf{x})$, a set of actions $A$ and a cost $C: Y \times A \mapsto \mathbb{R}$, pick the action with the maximum expected utility.
+$$
+a^*=\operatorname{argmin}_{a \in A} \mathbb{E}_{\mathbf{y}}[C(\mathbf{y}, a) \mid \mathbf{x}]
+$$
+
+Useful for asymmetric costs or abstention.
+\subsection*{Generative Modeling (GM)}
+Aim to estimate $p(\mathbf{x}, \mathbf{y})$ for complex situations using Bayes' rule: $p(\mathbf{x}, \mathbf{y})=p(\mathbf{x} \mid \mathbf{y}) \cdot p(\mathbf{y})$
+
+\subsubsection*{Naive Bayes Model}
+GM for classification tasks. Assuming for a class label, each feature is independent. This helps estimating $p(\mathbf{x} \mid \mathbf{y})=\prod_{i=1}^d p\left(x_i \mid y_i\right)$.
+\subsubsection*{Gaussian Naive Bayes Classifier}
+Naive Bayes Model with Gaussians features. Estimate the parameters via MLE:\\
+MLE for class prior: $p(\mathbf{y})=\hat{p}_{\mathbf{y}}=\frac{\operatorname{Count}(\mathbf{Y}=\mathbf{y})}{n}$ MLE for feature distribution:\\
+Where: $\quad p\left(x_i \mid \mathbf{y}\right)=\mathcal{N}(x_i ; \hat{\mu}_{\mathbf{y}, i}, \sigma_{\mathbf{y}, i}^2)$
+$$
+\textstyle \mu_{\mathbf{y}, i}=\frac{1}{\operatorname{Count}(\mathbf{Y}=\mathbf{y})} \sum_{j \mid \mathbf{y}_j=\mathbf{y}} x_{j, i}
+$$
+
+$$
+\textstyle \sigma_{\mathbf{y}, i}^2=\frac{1}{\operatorname{Count}(\mathbf{Y}=\mathbf{y})} \sum_{j \mid \mathbf{y}_j=\mathbf{y}}\left(x_{j, i}-\hat{\mu}_{\mathbf{y}, i}\right)^2
+$$
+
+Predictions are made by:
+$$\textstyle \underset{\hat{\mathbf{y}}}{\operatorname{argmax}} p(\hat{\mathbf{y}} \mid \mathbf{x})=\underset{\hat{\mathbf{y}}}{\operatorname{argmax}} p(\hat{\mathbf{y}}) \cdot \prod_{i=1}^d p\left(x_i \mid \hat{\mathbf{y}}\right)$$
+Equivalent to decision rule for bin. class.:
+$$
+\mathbf{y}=\operatorname{sgn}\left(\textcolor{pri}{\log \frac{p(\mathbf{Y}=+1 \mid \mathbf{x})}{p(\mathbf{Y}=-1 \mid \mathbf{x)}}}\right)
+$$
+
+Where $\textcolor{pri}{f(\mathbf{x})}$ is called the discriminant function. If the conditional independence assumption is violated, the classifier can be overconfident. 
+
+\subsubsection*{Gaussian Bayes Classifier}
+No independence assumption, model the features with a multivar. Gaussian 
+$\mathcal{N}(\mathbf{x} ; \mu_{\mathbf{y}}, \Sigma_{\mathbf{y}})$:
+$$
+\begin{aligned}
+&\textstyle \mu_{\mathbf{y}}=\frac{1}{\operatorname{Count}(\mathbf{Y}=\mathbf{y})} \Sigma_{j \mid \mathbf{y}_j=\mathbf{y}} \mathbf{x}_j \\
+&\textstyle \Sigma_{\mathbf{y}}=\frac{1}{\operatorname{Count}(\mathbf{Y}=\mathbf{y})} \Sigma_{j \mid \mathbf{y}_j=\mathbf{y}}\left(\mathbf{x}_j-\hat{\mu}_{\mathbf{y}}\right)\left(\mathbf{x}_j-\hat{\mu}_{\mathbf{y}}\right)^{\top}
+\end{aligned}
+$$
+
+This is also called the \textit{quadratic discriminant analysis (QDA)}. LDA: $\Sigma_{+}=\Sigma_{-}$, Fisher LDA: $p(\mathbf{y})=\frac{1}{2}$, Outlier detection: $p(\mathbf{x}) \leq \tau$. 
+\subsubsection*{Avoiding Overfitting}
+MLE is prone to overfitting. Avoid this by restricting model class (fewer parameters, e.g. GNB) or using priors (restrict param. values).  
+\textbf{Discriminative models:}
+$p(\mathbf{y} \mid \mathbf{x})$, fewer assumptions about data distribution \\
+\textbf{Generative models:}
+$p(\mathbf{x}, \mathbf{y})$, can detect outliers, gen. missing data, less robust to outliers.
+
+\subsection*{Gaussian Mixture Model}
+Data is generated from a mixture of Gaussians:
+$$
+\textstyle p(\mathbf{x} \mid \theta) = \sum_{j=1}^{k} w_j \mathcal{N}(\mathbf{x}; \mu_j, \Sigma_j)
+$$
+
+Estimate parameters by minimizing:
+$$
+\textstyle \operatorname{argmin}_\theta -\sum_{i=1}^n \log \sum_{j=1}^k w_j \mathcal{N}(\mathbf{x}_i \mid \mu_j, \Sigma_j)
+$$
+
+Non-convex objective, iteratively update parameters by predicting labels and imputing missing data.
+
+
+\subsubsection*{Hard-EM Algorithm}
+
+\textbf{E-Step:} predict the most likely class for each data point:
+$$
+\begin{aligned}
+z_i^{(t)} & \textstyle =\operatorname{argmax}_z p(z \mid \mathbf{x}_i, \boldsymbol{\theta}^{(t-1)}) \\
+& =\operatorname{argmax}_z p(z \mid \boldsymbol{\theta}^{(t-1)}) \cdot p(\mathbf{x}_i \mid z, \boldsymbol{\theta}^{(t-1)})
+\end{aligned}
+$$
+
+\textbf{M-Step:} compute MLE of $\theta^{(t)}$ as for GBC.
+\textit{Problems:} Labels even if uncertain, tries to extract too much inf. Works poorly if clusters are overlapping. \textit{Equivalent to k-Means with Lloyd's heuristics:} When having uniform weights and spherical covariances.
+
+
+\subsubsection*{Soft-EM Algorithm}
+
+\textbf{E-Step:} Calculate the cluster membership \\ weights for each point ($w_j\!=\!\pi_j\!=\!p(Z\!=\!j)$):
+$$
+\textstyle \gamma_j^{(t)}\left(\mathbf{x}_i\right)=p(Z=j \mid \mathbf{D})=\frac{w_j \cdot p\left(\mathbf{x}_i ; \theta_j^{(t-1)}\right)}{\sum_k w_k \cdot p\left(\mathbf{x}_i ; \theta_k^{(t-1)}\right)}
+$$
+
+\textbf{M-Step:} compute MLE with closed form:
+$$
+\begin{gathered}
+w_j^{(t)}=\textstyle \frac{1}{n} \sum_{i=1}^n \gamma_j^{(t)}\left(\mathbf{x}_i\right) \quad \boldsymbol{\mu}_j^{(t)}=\frac{\sum_{i=1}^n \mathbf{x}_i \cdot \gamma_j^{(t)}\left(\mathbf{x}_i\right)}{\sum_{i=1}^n \gamma_j^{(t)}\left(\mathbf{x}_i\right)} \\
+\textstyle \boldsymbol{\Sigma}_j^{(t)}=\frac{\sum_{i=1}^n \gamma_j^{(t)}\left(\mathbf{x}_i\right)\left(\mathbf{x}_i-\boldsymbol{\mu}_j^{(t)}\right)\left(\mathbf{x}_i-\boldsymbol{\mu}_j^{(t)}\right)^{\prime}}{\sum_{i=1}^n \gamma_j^{(t)}\left(\mathbf{x}_i\right)}
+\end{gathered}
+$$
+
+Init. the weights as uniformly distributed, rand. or with k-Means++ and for variances use spherical init. or empirical covariance of the data. Select $k$ using cross-validation. 
+
+\subsubsection*{Special Cases of Gaussian Mixtures}
+\begin{itemize}
+    \item \textbf{Spherical}: Same variance in all directions. 
+    $$\textstyle \Sigma_k = \sigma_k^2 I; \text{ Parameters: } K$$
+    \item \textbf{Diagonal}: Different variance for each dimension but no covariance. 
+    $$\textstyle \Sigma_k = \text{Diag}(\sigma_{k_1}^2, \sigma_{k_2}^2, \ldots, \sigma_{k_d}^2); \text{ Par.: } K \cdot d$$
+    \item \textbf{Tied}: Same cov. matrix for all components. 
+    $$\textstyle \Sigma_1 = \Sigma_2 = \cdots = \Sigma_k;\text{ Parameters: } \frac{d(d+1)}{2}$$
+    \item \textbf{Full}: Free covariance in all dimensions. 
+    $$\textstyle \omega, \mu, \Sigma;\text{ Parameters: } \frac{d(d+1)}{2} K$$
+\end{itemize}
+
+
+\subsubsection*{Degeneracy of GMMs}
+GMMs can overfit with limited data. To prevent this, add \( v^2 I \) to the covariance matrices, preventing collapse (equivalent to using a Wishart prior). Choose \( v \) via cross-validation.
+\subsubsection*{Gaussian-Mixture Bayes Classifiers} 
+Assume that $p(x \mid y)$ for each class can be modelled by a GMM.
+$$
+\textstyle p(\mathbf{x} \mid  y)=\sum_{j=1}^{k_y} w_j^{(y)} \mathcal{N}(\mathbf{x} ; \boldsymbol{\mu}_j^{(y)}, \boldsymbol{\Sigma}_j^{(y)})
+$$
+
+Giving highly complex decision boundaries:
+$$
+\textstyle p(y \mid \mathbf{x})=\frac{1}{z} p(y) \sum_{j=1}^{k_y} w_j^{(y)} \mathcal{N}(\mathbf{x} ; \boldsymbol{\mu}_j^{(y)}, \boldsymbol{\Sigma}_j^{(y)}).
+$$
+
+\subsubsection*{GMMs for Density Estimation}
+Can be used for anomaly detection or data imputation. Detect outliers, by comparing the estimated density against $\tau$. Allows to control the FP rate. Use ROC curve as evaluation criterion and optimize using $\mathrm{CV}$ to find $\tau$.
+
+\subsubsection*{General EM Algorithm}
+
+\textbf{E-Step:} Take the expected value over latent variables $z$ to generate likelihood function $Q$:
+$$
+\begin{aligned}
+Q(\theta ; \theta^{(t-1)}) & =\mathbb{E}_Z[\log p(\mathbf{X}, \mathbf{Z} \mid \theta) \mid \mathbf{X}, \theta^{(t-1)}] \\
+&\textstyle =\sum_{i=1}^n \sum_{z_i=1}^k \gamma_{z_i}(\mathbf{x}_i) \log p(\mathbf{x}_i, z_i | \theta)
+\end{aligned}
+$$
+
+with $\gamma_z(\mathbf{x})=p\left(z \mid \mathbf{x}, \theta^{(t-1)}\right)$.
+
+\textbf{M-Step:} Compute MLE / Maximize:
+$$
+\theta^{(t)}=\underset{\theta}{\operatorname{argmax}} Q\left(\theta ; \theta^{(t-1)}\right)
+$$
+
+We have monotonic convergence, each EM-iteration increases the data likelihood.
+
+\subsection*{GAN}
+
+$$
+\begin{aligned}
+\text{New loss: }\min _{w_G} \max _{w_D} \mathbb{E}_{\mathbf{x} \sim p_{\text {data }}}\left[\log D\left(\mathbf{x}, w_D\right)\right] \\
+\quad+\mathbb{E}_{\mathbf{z} \sim p_z}\left[\log \left(1-D\left(G\left(\mathbf{z}, w_G\right), w_D\right)\right)\right]
+\end{aligned}
+$$
+
+\begin{itemize}
+  \item \textit{Saddle Point:} Training seeks a saddle point.
+  \item \textit{Capacity:} Conv. if $\mathbf{G}$ and $\mathbf{D}$ have enough capacity.
+  \item \textit{Optimal $\mathbf{D}$ for fixed $\mathbf{G}$:}
+  $$
+  D_G(\mathbf{x}) = \frac{p_{\text{data}}(\mathbf{x})}{p_{\text{data}}(\mathbf{x}) + p_G(\mathbf{x})}
+  $$
+  \item \textit{Fake Probability:} $1 - D_G$.
+  \item \textit{Issues:} Oscill., divergence, mode collapse.
+\end{itemize}
+
+\textbf{Performance Metric:}
+$$
+DG = \max_{w_D'} M(w_G, w_D') - \min_{w_G'} M(w_G', w_D)
+$$
+where $M(w_G, w_D)$ is the training objective.
+```
+
+\subsection*{Various}
+
+\textbf{Derivatives:}
+$$
+\begin{gathered}
+\nabla_{\mathbf{x}} \mathbf{x}^{\top} \mathbf{A}=\mathbf{A} \quad \nabla_{\mathbf{x}} \mathbf{a}^{\top} \mathbf{x}=\nabla_{\mathbf{x}} \mathbf{x}^{\top} \mathbf{a}=\mathbf{a} \\
+\nabla_{\mathbf{x}} \mathbf{b}^{\top} \mathbf{A} \mathbf{x}=\mathbf{A}^{\top} \mathbf{b}, \ \nabla_{\mathbf{x}} \mathbf{x}^{\top} \mathbf{x}=2 \mathbf{x}, \ \nabla_{\mathbf{x}} \mathbf{x}^{\top} \mathbf{A} \mathbf{x}=2 \mathbf{A} \mathbf{x} \\
+\text{Square Loss: }\nabla_w\|\mathbf{y}-\mathbf{X} \mathbf{w}\|_2^2=2 \mathbf{X}^{\top} \mathbf{X} \mathbf{w}-2 \mathbf{X}^{\top} \mathbf{y}
+\end{gathered}
+$$
+
+\textbf{Bayes Theorem:}
+$$p(y \mid x)=\frac{1}{p(x)} p(y) \cdot p(x \mid y)$$
+
+\textbf{Normal Distribution:}
+$$\textstyle\mathcal{N}(x ; \mu, \Sigma)=\frac{1}{\sqrt{(2 \pi)^d \operatorname{det}(\Sigma)}} \exp \left(-\frac{(\mathbf{x}-\mu)^{\top} \Sigma^{-1}(\mathbf{x}-\mu)}{2}\right)$$
+\textbf{Exponential Distribution:} $\operatorname{Exp}(\lambda)=\lambda e^{-\lambda x}$
+\subsubsection*{Other Facts}
+Memoryless: $p(X>a+b | X \geq a)=p(X>b)$
+Tower Property: $\mathbb{E}[X]=\mathbb{E}[\mathbb{E}[X \mid Y]]$\\
+$\Rightarrow\mathbb{E}[X]=\sum_{y \in \mathcal{Y}} \mathbb{E}[X \mid Y=y] p_Y(y)$
+$$
+\operatorname{Tr}(A B)=\operatorname{Tr}(B A), \operatorname{Var}(X)=\mathbb{E}\left[X^2\right]-\mathbb{E}[X]^2 \text {, }
+$$
+$\mathbf{X} \in \mathbb{R}^{n \times d}: \mathbf{X}^{-1} \rightarrow \mathcal{O}\left(d^3\right) ;\mathbf{X}^{\top} \mathbf{X} \rightarrow \mathcal{O}\left(n d^2\right)$,
+$$
+\begin{aligned}
+& \binom{n}{k}=\frac{n!}{(n-k)!k!},\left\|\mathbf{w}^{\top} \mathbf{w}\right\|_2=\sqrt{\mathbf{w}^{\top} \mathbf{w}} \\
+& \operatorname{Cov}[\mathbf{X}]=\mathbb{E}\left[(\mathbf{X}-\mathbb{E}[\mathbf{X}])(\mathbf{X}-\mathbb{E}[\mathbf{X}])^{\top}\right] \\
+& p(\mathbf{z} \mid \mathbf{x}, \theta)=\frac{p(\mathbf{x}, \mathbf{z} \mid \theta)}{p(\mathbf{x} \mid \theta)}
+\end{aligned}
+$$
+
+\subsubsection*{Convexity}
+\begin{itemize}
+	\item $\alpha f+\beta g, \alpha, \beta \geq 0$, convex if $f, g$ convex
+	\item $f \circ g$, convex if [$f$ convex and $g$ affine (e.g. $a x+b$)] or [$f$ non-decresing and $g$ convex]
+	\item $\max(f, g)$, convex if $f, g$ convex
+	\item $L(\lambda \mathbf{w}+(1-\lambda) \mathbf{v}) \leq \lambda L(\mathbf{w})+(1-\lambda) L(\mathbf{v})$
+\end{itemize}
+\begin{enumerate}
+\item[1.] Order: $L(\mathbf{w})+\nabla L(\mathbf{w})^{\top}(\mathbf{v}-\mathbf{w}) \leq L(\mathbf{v})$
+\item[2.] Order: Hessian $\nabla^2 L(\mathbf{w}) \geq 0$ (psd)
+\end{enumerate}
+
+
+
+\end{document}
+
+
+

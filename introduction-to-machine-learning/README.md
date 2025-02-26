@@ -1,0 +1,1 @@
+Summary based on [dcamenisch's cheat sheet](https://exams.vis.ethz.ch/user/dcamenisch/document/cheat-sheet-fs22) with some additions and revisions to fit the script more closely. 
