@@ -1,0 +1,2 @@
+# Visual Computing
+This cheat sheet is based on [@tgassman's](https://exams.vis.ethz.ch/user/tgassmann/document/cheatsheet-hs24-based-on-jhoffmanns-cheatsheet) and [@jhoffman's](https://exams.vis.ethz.ch/user/jhoffmann/document/cheatsheet-hs23_2) cheatsheet.

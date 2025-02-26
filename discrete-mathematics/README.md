@@ -1,5 +1,5 @@
+# Discrete Mathematics
 ### Introduction
-
 This document is an updated and enhanced version of the cheatsheet originally created by [@dcamenisch](https://n.ethz.ch/~dcamenisch/uploads/DiskMat-Cheatsheet.pdf). It features revised lemma numbers, corrections of prior inaccuracies (though some new ones may have inadvertently been introduced), and several valuable additions.
 
 **New Features (detailed on the last page):**  
