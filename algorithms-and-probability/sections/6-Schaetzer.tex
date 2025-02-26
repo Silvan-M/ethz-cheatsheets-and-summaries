@@ -1,0 +1,129 @@
+\section{Schätzer}
+
+Wir treffen folgende Annahmen:
+\begin{itemize}
+	\item Parameterraum \(\vartheta \subset \R^m\)
+	\item Familie von Wahrscheinlichkeitsmassen \((\P_\vartheta)_{\vartheta \in \vartheta}\) auf \((\Omega, \F)\); 
+    für jedes Element im Parameterraum existiert ein Modell / Wahrscheinlichkeitsraum $(\Omega, \F, \P_{\vartheta})$.
+	\item Zufallsvariablen \(X_1, \ldots, X_n\) auf \((\Omega, \F)\)
+\end{itemize}
+Wir nennen die Gesamtheit der beobachteten Daten \(x_1, \ldots, x_n\) (wobei $x_i = X_i(\omega)$) und die ZV \(X_1, \ldots, X_n\) Stichprobe.
+\begin{mainbox}{}
+	Ein \textbf{Schätzer} ist eine Zufallsvariable der Form
+$$
+T_{\ell}=t_{\ell}(X_{1}, \ldots, X_{n})
+$$
+Die \textbf{Schätzfunktionen} $t_{\ell}: \mathbb{R}^{n} \rightarrow \mathbb{R}$ müssen gewählt werden. Einsetzen von Daten $x_{k}=X_{k}(\omega), k=1, \ldots, n$, liefert \textbf{Schätzwerte} $T_{\ell}(\omega)=t_{\ell}(x_{1}, \ldots, x_{n})$ für $\vartheta_{\ell}, \ell=1, \ldots, m$. Kurz: $T=(T_{1}, \ldots, T_{m})$ und $\vartheta=(\vartheta_{1}, \ldots, \vartheta_{m})$.
+\end{mainbox}
+Ein Schätzer \(T\) ist \textbf{erwartungstreu}, falls für alle \(\vartheta \in \Theta\) gilt:
+\[\E_\vartheta [T] = \vartheta\]
+Sei \(\vartheta \in \vartheta\) und \(T\) ein Schätzer. Der \textbf{Bias} (erwartete Schätzfehler) von \(T\) im Modell \(\P_\vartheta\) ist definiert als:
+\[\E_\vartheta[T]-\vartheta\]
+Der mittlere quadratische Schätzfehler (MSE) von \(T\) im Modell \(\P_\vartheta\) ist definiert als:
+\begin{align*}
+	\text{MSE}_\vartheta[T] & = \E_\vartheta[(T-\vartheta)^2]                    \\
+	\ & = \Var_\vartheta(T) + (\E_\vartheta[T] - \vartheta)^2
+\end{align*}
+
+Eine Folge von Schätzern $T^{(n)}, n \in \mathbb{N}$, heisst \textbf{konsistent} für $\vartheta$, falls $T^{(n)}$ für $n \rightarrow \infty$ in $\mathbb{P}_{\vartheta}$-Wahrscheinlichkeit gegen $\vartheta$ konvergiert, d.h. für jedes $\vartheta \in \Theta$ und jedes $\varepsilon>0$ gilt
+$$
+\lim _{n \rightarrow \infty} \mathbb{P}_{\vartheta}[|T^{(n)}-\vartheta|>\varepsilon]=0
+$$
+
+\subsection{Maximum-Likelihood-Methode}
+\subsubsection{Likelihood-Funktion, ML-Schätzer}
+Die Likelihood-Funktion ist definiert als
+\[L(x_1, \ldots, x_n; \vartheta) = \begin{cases}
+		p(x_1, \ldots, x_n; \vartheta) & \text{falls diskret} \\
+		f(x_1, \ldots, x_n; \vartheta) & \text{falls stetig}
+	\end{cases} \]
+	
+Wenn $X_{k}$ unter $\mathbb{P}_{\vartheta}$ i.i.d. gilt (analog mit $f_{\vec{x}}$ und $f_X$):
+$$
+p_{\vec{x}}\left(x_{1}, \ldots, x_{n} ; \vartheta\right)=\prod_{k=1}^{n} p_{X}\left(x_{k} ; \vartheta\right)\quad 
+$$
+
+\noindent Für jedes \(x_1, \ldots, x_n \in W\) sei \(t_{ML}(x_1, \ldots, x_n)\) der Wert, welcher die Funktion \(\vartheta \mapsto L(x_1, \ldots, x_n; \vartheta)\) maximiert. Ein Maximum-Likelihood-Schätzer ist dann definiert als
+\[T_{\mathrm{ML}}=t_{\mathrm{TM}}\left(X_{1}, \ldots, X_{n}\right) \in \underset{\vartheta \in \vartheta}{\arg \max } L\left(X_{1}, \ldots, X_{n} ; \vartheta\right)\]
+\textbf{Notiz:} Nicht vergessen zu zeigen, dass es ein \textit{Maxima} ist.
+
+\subsubsection{Anwendung der Methode}
+Die Maximum-Likelihood-Methode ist ein Weg, um systematisch einen Schätzer zu bestimmen.
+\begin{enumerate}
+	\item Gemeinsame Dichte/Verteilung der ZV finden
+	\item Bestimme davon die Log-Likelihood-Funktion\\ \(f(\vartheta) := \ln(L(x_1, \ldots, x_n;\vartheta))\)
+	\item \(f(\vartheta)\) nach \(\vartheta\) ableiten
+	\item Nullstelle von \(f'(\vartheta)\) finden
+	\item $f''(\vartheta) < 0$ oder anderes Argument, dass wir das Maximum gefunden haben (evtl. Randstellen überprüfen!).
+\end{enumerate}
+
+
+\subsection{Momentenmethode /-schätzer:} 
+\begin{enumerate}
+    \item Sei $X_1, \ldots, X_n$ iid. eine Stichprobe. 
+    \item Sei $\vartheta$ ein $m$-dimensionaler Parameterraum. 
+    \item Stelle für $\vartheta = (\vartheta_1, \ldots, \vartheta_m)$ ein Gleichungssystem auf, in dem das $k$-te empirische Moment dem $k$-ten Moment gleichgesetzt wird: 
+    $$
+    \hat{m}_k(x_1, \ldots, x_n) = g_k(\vartheta_1, \ldots, \vartheta_m), \quad k \in \{1, \ldots, m\}
+    $$
+    \item Der Vektor $\hat{\vartheta}(X_1, \ldots, X_n)$ heißt Momentenschätzer des Parameters $\vartheta$.
+\end{enumerate}
+
+\textbf{Momentenschätzer.} 
+Der Schätzer $T=(T_{1}, T_{2})$ ist allgemein in jedem Modell $\mathbb{P}_{\vartheta}$, in dem $X_{1}, \ldots, X_{n}$ i.i.d. sind, der sogenannte Momentenschätzer für 
+$$
+(\mathbb{E}_{\vartheta}[X], \mathbb{V}_{\vartheta}[X])
+$$
+Dieser Schätzer ist allerdings nicht erwartungstreu für $(\mathbb{E}_{\vartheta}[X], \mathbb{V}_{\vartheta}[X])$. Es gilt zwar 
+$$
+\mathbb{E}_{\vartheta}[T_{1}] = \mathbb{E}_{\vartheta}[\bar{X}_{n}] = \mathbb{E}_{\vartheta}[X]
+$$
+aber 
+$$
+\mathbb{E}_{\vartheta}[(\bar{X}_{n})^{2}] = \frac{1}{n} \mathbb{E}_{\vartheta}[X^{2}] + \frac{n-1}{n} \mathbb{E}_{\vartheta}[X]^{2}
+$$
+Daraus folgt 
+$$
+\mathbb{E}_{\vartheta}[T_{2}] = \frac{n-1}{n} \mathbb{V}_{\vartheta}[X] \neq \mathbb{V}_{\vartheta}[X]
+$$
+Um einen erwartungstreuen Schätzer $T^{\prime}$ für $(\mathbb{E}_{\vartheta}[X], \mathbb{V}_{\vartheta}[X])$ zu erhalten, verwendet man
+$$
+\begin{aligned}
+T_{1}^{\prime} &= \bar{X}_{n} \\
+T_{2}^{\prime} &= \frac{n}{n-1} T_{2} \frac{1}{n-1} \sum_{k=1}^{n} (X_{k} - \bar{X}_{n})^{2} \\
+& = \frac{1}{n-1} \sum_{k=1}^{n} X_{k}^{2} - \frac{n}{n-1} (\bar{X}_{n})^{2}
+\end{aligned}
+$$
+Für $T_{2}^{\prime}$ schreibt man oft
+$$
+S^{2} = \frac{1}{n-1} \sum_{k=1}^{n} (X_{k} - \bar{X}_{n})^{2}
+$$
+Man nennt $S^{2}$ die (korrigierte) empirische Varianz.
+
+
+\begin{subbox}{Gammafunktion}
+	Die Funktion $\Gamma$ nennt man (Eulersche) Gammafunktion und sie ist für $x \geq 0$ definiert durch
+	$$
+	\Gamma(x)=\int_{0}^{\infty} t^{x-1} e^{-t} \mathrm{~d} t
+	$$
+	$\Gamma$ hat eine grundlegende Verbindung zur Fakultätsfunktion, denn
+	$$
+	\Gamma(n+1)=n!\text { für } n \in \mathbb{N}_{0} \text {. }
+	$$
+\end{subbox}
+
+\textbf{Studentsche $t$-Verteilung}: $X \sim t_{m}$\\
+Eine stetige Zufallsvariable $X$ heisst $t$-verteilt mit $m$ Freiheitsgraden falls ihre Dichte für $x \in \mathbb{R}$ gegeben ist durch
+$$
+f_{X}(x)=\frac{\Gamma\left(\frac{m+1}{2}\right)}{\sqrt{m \pi} \Gamma\left(\frac{m}{2}\right)}\left(1+\frac{x^{2}}{m}\right)^{-\frac{m+1}{2}}
+$$
+\textbf{Entstehung der $t$-Verteilung:} Sind $X \sim \mathcal{N}(0,1)$ und $Y \sim \chi_{m}^{2}$ unabhängig, so ist der Quotient
+$$
+\frac{X}{\sqrt{\frac{1}{m} Y}} \sim t_{m}
+$$
+\begin{enumerate}
+	\item Für $m=1$ ergibt sich eine Cauchy-Verteilung.
+	\item Für $m \rightarrow \infty$ erhält man asymptotisch eine $\mathcal{N}(0,1)$-Verteilung.
+	\item Die $t$-Verteilung ist symmetrisch um 0, aber langschwänziger als die $\mathcal{N}(0,1)$-Verteilung; die Dichte geht langsamer gegen 0, je kleiner $m$ ist.
+\end{enumerate}
+

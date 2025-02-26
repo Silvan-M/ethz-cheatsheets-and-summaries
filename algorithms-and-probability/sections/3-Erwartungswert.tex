@@ -1,0 +1,105 @@
+\section{Erwartungswert}
+\begin{mainbox}{Erwartungswert (Stetige ZV)}
+    Sei $X: \Omega \to \R$ eine stetige Zufallsvariable mit Dichte $f$. Sei $\varphi: \R \to \R$ eine Abbildung, sodass $\varphi(X)$ eine Zufallsvariable ist. Dann gilt
+    $$\mathbb{E}[\varphi(X)]=\int_{-\infty}^{\infty} \varphi(x) f_{X}(x) \mathrm{d} x,$$
+	falls das Integral wohldef. ist (bei $\varphi\!=\!id$ abs. konv.).\\
+    Sei $X$ eine stetige ZV mit $X \geq 0$ f.s., dann gilt:
+    $$\mathbb{E}[X]=\int_0^{\infty}\left(1-F_X(x)\right) \mathrm{d} x$$ 
+    
+    Der \textbf{Allgemeine Erwartungswert} für eine reelwertige ZV $X$ mit $\mathbb{E}[|X|]<\infty$ ist definiert als:
+    $$
+    \begin{aligned}
+    	\mathbb{E}[X]&=\mathbb{E}\left[X_{+}\right]-\mathbb{E}\left[X_{-}\right]
+    	\quad \text{mit }X_{\pm}\!=\!\max (\pm X, 0)\\
+    &=\textstyle \int_0^{\infty}\left(1-F_X(x)\right) \mathrm{d} x-\int_{-\infty}^0 F_X(x) \mathrm{d} x
+    \end{aligned}
+    $$
+\end{mainbox}
+
+\begin{mainbox}{Erwartungswert (Diskrete ZV)}
+    Sei $X: \Omega \to \R$ eine diskrete Zufallsvariable, $W_X := X(\Omega)$ und $\varphi: \R \to \R$ eine Abbildung. Falls die Summe wohldefiniert ist, gilt: 
+    $$\mathbb{E}(\varphi(X)) := \sum_{x \in W_X} \varphi(x) \cdot \P(X = x)$$
+\end{mainbox}
+
+Sei $X$ eine nicht-negative Zufallsvariable. Dann gilt $\mathbb{E}[X] \geq 0$. Gleichheit gilt genau dann, wenn $X=0$ fast sicher ist.
+$$
+\begin{aligned}
+\mathbb{E}[X] \geq 0 &\Longleftarrow X \geq 0 \text{ immer}\\
+\mathbb{E}[X] = 0 &\iff X = 0 \text{ fast sicher, d.h. } \mathbb{P}[X \neq 0] = 0
+\end{aligned}
+$$
+
+
+\subsection{Rechnen mit Erwartungswerten}
+\textbf{Linearität des Erwartungswertes}: 
+
+Seien $X, Y: \Omega \to \R$ ZV mit $\lambda \in \R$, Falls die Erwartungswerte wohldefiniert sind, gilt:
+$$\mathbb{E}(\lambda \cdot X + Y) = \lambda \cdot \mathbb{E}(X) + \mathbb{E}(Y)$$
+
+Falls $X, Y$ \textbf{unabhängig}, dann gilt auch:
+$$\mathbb{E}(X \cdot Y) = \mathbb{E}(X) \cdot \mathbb{E}(Y)$$
+
+Generell: $X_1, X_2, ...,X_n$ unabhängig und endlich:
+$$\mathbb{E}\left[\prod_{k=1}^{n} X_{k}\right]=\prod_{k=1}^{n} \mathbb{E}\left[X_{k}\right]$$
+
+\subsection{Ungleichungen}
+\textbf{Monotonie}
+\\Seien $X, Y$ ZV mit $X \leq Y$ f.s., dann gilt:
+$$\E(X) \leq \E(Y)$$
+\textbf{Markow Ungleichung}
+\\Sei $X$ eine ZV und ferner $g: X(\Omega) \to [0, +\infty)$ eine wachsende Funktion. Für jedes $c \in \R$ mit $g(c) > 0$ gilt dann
+$$\P(X \geq c) \leq \frac{\E(g(X))}{g(c)}\quad \overset{t<0}\Longrightarrow \quad  \P(X \geq t) \leq \frac{\E(X)}{t}$$
+
+\textbf{Chebyshev Ungleichung}
+\\Sei $Y$ eine ZV mit endlicher Varianz. Für jedes $b > 0$ gilt dann
+$$\P(|Y - \E(Y)| \geq b) \leq \frac{\text{Var}(Y)}{b^2}$$
+\textbf{Jensen Ungleichung}
+\\Sei $X$ eine ZV und $\varphi: \R \to \R$ eine konvexe Funktion, dann gilt:
+$$\varphi(\E(X)) \leq \E(\varphi(X))$$
+
+\subsection{Varianz}
+\begin{mainbox}{Varianz}
+    Sei $X$ eine ZV, sodass $\E(X^2)<\infty$. Die \textbf{Varianz} von $X$ ist definiert durch
+    $$\mathbb{V}(X) = \sigma_X^2 =\mathbb{E}\left[(X-\mathbb{E}[X])^2\right]=\mathbb{E}\left[X^2\right]-\mathbb{E}[X]^2$$
+    wobei $m = \E(X)$. Dabei wird $\sigma_X$ als \textbf{Standardabweichung} von $X$ bezeichnet und beschreibt den Erwartungswert für die Distanz von $X$ zu $\E(X)$.
+\end{mainbox}
+
+\begin{enumerate}
+    \item Sei $X$ ein ZV, sodass $\E(X^2)<\infty$ und $a, b \in \R$:
+    $$\mathbb{V}(a\cdot X + b) = a^2 \cdot \mathbb{V}(X)$$
+    \item Seien $X_1, ..., X_n$ paarweise unabhängig. Dann gilt
+    $$\mathbb{V}(X_1 + \ldots + X_n) = \mathbb{V}(X_1)+\ldots +\mathbb{V}(X_n)$$
+\end{enumerate}
+
+\begin{mainbox}{Kovarianz}
+    Seien $X, Y$ ZV mit $\E(X^2)<\infty, \E(Y^2) < \infty$. Wir definieren die \textbf{Kovarianz} zwischen $X$ und $Y$ durch
+    $$
+    \begin{aligned}
+	    \text{cov}(X,Y) &:= \mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])]\\
+    	&\phantom{:}= \mathbb{E}(XY) - \mathbb{E}(X)\mathbb{E}(Y)
+	\end{aligned}
+    $$
+\end{mainbox}
+\begin{enumerate}
+    \item $\text{cov}(X,X) = \mathbb{V}(X)$
+    \item $X, Y$ unabhängig $\implies$ $\text{cov}(X, Y) = 0$ ($\centernot \Longleftarrow$)
+    \item $\mathbb{V}(X\pm Y) = \mathbb{V}(X) + \mathbb{V}(Y) \pm 2\text{cov}(X, Y)$
+    \item $(\star)\ \operatorname{cov}( \sum_{i=1}^{n}X_{i},\sum_{j=1}^n Y_{j})= \sum_{i=1}^{n}\sum_{j=1}^n \text{cov}\left(X_{i},Y_{j}\right)$
+\end{enumerate}
+\textbf{Korrelationen}
+\begin{itemize}
+    \item $\operatorname{cov}(X, Y) > 0 \Rightarrow$ positiv korreliert
+    \item $\operatorname{cov}(X, Y) = 0 \Rightarrow$ unkorreliert
+    \item $\operatorname{cov}(X, Y) < 0 \Rightarrow$ negativ korreliert/antikorreliert
+\end{itemize}
+
+Es gilt: $X_i, X_j \text{ unabhängig} \implies X_i, X_j \text{ unkorreliert}$
+
+\textbf{Eigenschaften der Kovarianz}\\
+Für $X, Y, Z$ mit $\mathbb{E}[X_{i}^{2}]<\infty$ und $a, b, c, d, e, f, g, h \in \mathbb{R}$: 
+\begin{enumerate}
+	\item Positive Semidefinitheit: $\operatorname{cov}(X, X) \geq 0$
+	\item Symmetrie: $\operatorname{cov}(X, Y)=\operatorname{cov}(Y, X)$
+	\item Bilinearität: $\operatorname{cov}(a X+b, c Y+d)=a c \operatorname{cov}(X, Y)$ und $\operatorname{cov}(X,(e Y+f)+(g Z+h))=e \operatorname{cov}(X, Y)+g \operatorname{cov}(X, Z)$
+\end{enumerate}
+

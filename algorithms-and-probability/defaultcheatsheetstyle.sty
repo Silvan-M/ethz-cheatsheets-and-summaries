@@ -1,0 +1,141 @@
+\ProvidesPackage{defaultcheatsheetstyle}
+
+\usepackage[nswissgerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+\usepackage[landscape, left=0.75cm, top=1cm, right=0.75cm, bottom=1.5cm, footskip=15pt]{geometry}
+\usepackage{flowfram}
+\usepackage{multicol}
+\usepackage{longtable} % For long tables
+\ffvadjustfalse
+\setlength{\columnsep}{1cm}
+\Ncolumn{3}
+
+
+% Saving space around section headers and customizing them
+\usepackage[compact]{titlesec}  
+% \titlespacing{\section}{0pt}{2pt}{0pt}
+% \titlespacing{\subsection}{0pt}{2pt}{0pt}
+% \titlespacing{\subsubsection}{0pt}{2pt}{0pt}
+% \titleformat{\section}{\large\bfseries}
+% \titleformat*{\subsection}{\normalsize\bfseries}
+% \titleformat*{\subsubsection}{\small\bfseries}
+
+% define nice looking boxes
+\usepackage[many]{tcolorbox}
+
+% a base set, that is then customised
+
+\tcbset {
+  base/.style={
+    boxrule=0mm,
+    leftrule=0mm,
+    left=1.75mm,
+    arc=1mm, 
+    fonttitle=\bfseries, 
+    colbacktitle=black!10!white, 
+    coltitle=black, 
+    toptitle=0.75mm, 
+    bottomtitle=0.25mm,
+    title={#1}
+  }
+}
+
+\definecolor{grey}{RGB}{150, 150, 150}
+
+\definecolor{bluetitle}{RGB}{210, 235, 255}
+\definecolor{blueframe}{RGB}{146, 208, 255}
+\definecolor{blueback}{RGB}{236, 247, 255}
+\newtcolorbox{mainbox}[1]{
+  colframe=blueframe, 
+  base={#1},
+  colbacktitle=bluetitle,
+  colback=blueback,
+}
+
+\newtcolorbox{subbox}[1]{
+  colframe=black!20!white,
+  base={#1}
+}
+
+
+% Mathematical typesetting & symbols
+\usepackage{amsthm, mathtools, amssymb} 
+\usepackage{marvosym, wasysym, dsfont}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{centernot}
+\usepackage{gensymb}
+
+\allowdisplaybreaks
+
+% Tables
+\usepackage{tabularx, multirow}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{placeins}
+% \renewcommand*{\arraystretch}{2}
+
+% Make enumerations more compact
+\usepackage{enumitem}
+\setitemize{itemsep=-3	pt, topsep=1pt}   % Spacing between itemize
+\setenumerate{itemsep=-3pt, topsep=1pt} % Spacing between enumerations
+\setlist[itemize,1]{leftmargin=15pt}    % Indentiation enumerations, level 1
+\setlist[enumerate,1]{leftmargin=15pt}  % Indentiation enumerations, level 1
+\setlist[itemize,2]{leftmargin=5pt}    % Indentiation enumerations, level 2
+\setlist[enumerate,2]{leftmargin=5pt}  % Indentiation enumerations, level 2
+
+% Checkboxes for multiple choice
+\newlist{Checkboxes}{itemize}{2}
+\setlist[Checkboxes]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\correct}{\rlap{$\square$}{\raisebox{2pt}{\hspace{1pt}\cmark}}\hspace{-2.5pt}}
+
+% To include sketches & PDFs
+\usepackage{graphicx}
+
+% For hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=false
+}
+
+% Metadata
+\title{Wahrscheinlichkeit und Statistik}
+\author{by Silvan Metzker}
+\date{Juli 2024}
+
+% Math helper stuff
+\def\limn{\lim_{n\to \infty}}
+\def\limxo{\lim_{x\to 0}}
+\def\limxi{\lim_{x\to\infty}}
+\def\limxn{\lim_{x\to-\infty}}
+\def\sumk{\sum_{k=1}^\infty}
+\def\sumn{\sum_{n=0}^\infty}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\X{\mathcal{X}}
+\def\dx{\text{ d}x}
+\def\Pset{\mathcal{P}}
+\def\P{\mathbb{P}}
+\def\A{\mathcal{A}}
+\def\F{\mathcal{F}}
+\def\E{\mathbb{E}}
+\def\Z{\mathbb{Z}}
+\def\Var{\text{Var}}
+\def\tbf{\textbf}
+
+% Custom command for partial derivatives
+\newcommand{\pdv}[2]{\frac{\partial #1}{\partial #2}}
+
+% Page numbering style
+\usepackage{zref-totpages}
+\makeatletter
+\renewcommand{\@evenfoot}{\hfil \thepage{}/\ztotpages\hfil}
+\renewcommand{\@oddfoot}{\@evenfoot}
+\makeatother

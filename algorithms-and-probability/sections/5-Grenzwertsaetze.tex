@@ -1,0 +1,114 @@
+\section{Konvergenz von Wahr'keiten}
+
+\begin{mainbox}{Konvergenz in Verteilung}
+	Seien $\left(X_n\right)_{n \in \mathbb{N}}$ und $X$ Zufallsvariablen mit Verteilungsfunktionen $\left(F_n\right)_{n \in \mathbb{N}}$ und $F$. $\left(X_n\right)_{n \in \mathbb{N}}$ konvergiert \textbf{in Verteilung} gegen $X$, geschrieben $X_n \xrightarrow{d} X$ für $n \rightarrow \infty$, falls für jeden Stetigkeitspunkt $x \in \mathbb{R}$ von $F$ gilt:
+$$
+\lim_{n \rightarrow \infty} F_n(x)=\mathbb{P}\left[X_n \leq x\right]=F(x)
+$$
+Notation: $X_n \xrightarrow{w} X$ oder $X_n \xrightarrow{L} X$, wobei $d, w, L$ für \textit{convergence in distribution}, \textit{weak convergence}, bzw. \textit{convergence in law} stehen. (Nicht in Vorlesung)
+\end{mainbox}
+
+\begin{mainbox}{Schwaches Gesetz der grossen Zahlen}
+    Sei $X_1, X_2, \ldots$ eine Folge von unabhängigen Zufallsvariablen mit gleichen Erwartungswerten $\mathbb{E}\left[X_k\right]=\mu$ und Varianzen $\mathbb{V}\left[X_k\right]=\sigma^2$. 
+    Sei
+    $$\overline{X}_n = \frac{1}{n}S_n = \frac{1}{n}\sum_{i = 1}^{n}X_i$$
+    Dann konvergiert $\overline{X}_n$ für $n \to \infty$ \textbf{in Wahrscheinlichkeit} gegen $\mu = \E(X_i)$, d.h. für jedes $\varepsilon>0$ gilt
+    $$\mathbb{P}\left[\left|\bar{X}_n-\mu\right|>\varepsilon\right] \xrightarrow{n \rightarrow \infty} 0 .$$
+    
+\end{mainbox}
+
+\begin{mainbox}{Starkes Gesetz der grossen Zahlen}
+    Sei $X_1, X_2, \ldots$ eine Folge von uiv. Zufallsvariablen. Sei $\E(|X_1|)<\infty$ und $\mu = \E(X_1)$. Für
+    $$\overline{X}_n = \frac{1}{n}S_n = \frac{1}{n}\sum_{i = 1}^{n}X_i$$
+    gilt dann
+    $$\overline{X}_n \xrightarrow{n \rightarrow \infty} \mu \quad \mathbb{P} \text {-fast sicher, }$$
+    das bedeutet,
+	$$
+	\mathbb{P}\left[\left\{\omega \in \Omega \mid \bar{X}_n(\omega) \xrightarrow{n \rightarrow \infty} \mu\right\}\right]=1 .
+	$$
+\end{mainbox}
+
+\begin{subbox}{}
+Sei $X$ eine nicht-negative Zufallsvariable. Dann gilt $\mathbb{E}[X] \geq 0$. Gleichheit gilt genau dann wenn $X=0$ fast sicher gilt.  
+Also (aus Vorlesung): 
+$$
+\begin{aligned}
+\mathbb{E}[X]\geq0 &\Longleftarrow X\geq0 \text{ gilt immer}\\
+&\hspace{1cm}\text{und}\\
+\mathbb{E}[X]=0 &\iff X=0 \text{ fast sicher, also }\mathbb{P}[X\neq 0]=0\\
+\end{aligned}
+$$
+
+\end{subbox}
+
+\subsection{Zentraler Grenzwertsatz}
+\begin{mainbox}{Zentraler Grenzwertsatz}
+    Sei $(X_n)_{n\in \N}$ eine Folge von iid. Zufallsvariablen mit $\E(X_i) = \mu < \infty$ und Var$(X_i) = \sigma^2 < \infty$.
+    Dann gilt 
+    $$\limn \P\left(\frac{S_n - n \mu}{\sigma \sqrt{n}} \leq x\right) = \Phi(x) \quad \forall x \in \R$$
+    also
+    $$\textcolor{grey}{\left(\frac{\frac{1}{n} S_{n} - \mu}{\frac{\sigma}{\sqrt{n}}} =\right)}\frac{S_n - n \mu}{\sigma \sqrt{n}} \overset{d}{\longrightarrow} \mathcal{N}(0,1)$$
+\end{mainbox}
+\textbf{Bemerkungen: }
+
+Man verwendet auch oft die Form für $\overline{X}_n = \frac{1}{n}S_n$ als
+\begin{equation}
+	\frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}} \overset{d}{\longrightarrow} \mathcal{N}(0,1) \tag{$\star$}
+\end{equation}
+beziehungsweise
+\begin{equation}
+	S_n \overset{d}{\longrightarrow} \mathcal{N}(n\mu, n \sigma^2) \text{ und } \overline{X}_n \overset{d}{\longrightarrow} \mathcal{N}\left(\mu, \frac{1}{n}\sigma^2\right)\tag{$\star$}
+\end{equation}
+
+\subsubsection*{Beispielrechnung}
+
+Seien $(X_i)_{i \geq 1}, (Y_i)_{i \geq 1}$ und $(Z_i)_{i \geq 1}$ Folgen von iid. ZV mit
+$$\P(X_1 = 1) = \P(X_1 = -1) = \frac{1}{2}$$
+und analog für $Y_1$ und $Z_1$. Wir definieren
+$$S_n^{(x)} := \sum_{i=1}^n X_i, \quad S_n^{(y)} := \sum_{i=1}^n Y_i, \quad S_n^{(z)} := \sum_{i=1}^n Z_i$$
+Die Folge $\left((S_n^{(x)}, S_n^{(y)}, S_n^{(z)})\right)_{n \geq 1}$ wird zufällige Irrfahrt in $\Z^3$ genannt. Sei $\alpha > \frac{1}{2}$. Zeige, dass
+$$\P\left(\left\lVert(S_n^{(x)}, S_n^{(y)}, S_n^{(z)})\right\rVert_2 \leq n^\alpha\right) \longrightarrow 1 \text{ für } n \to \infty,$$
+wobei $\left\lVert(x,y,z)\right\rVert_2 := \sqrt{x^2+y^2+z^2}$ die euklidische Norm ist.
+
+\textit{Schritt 1: }$\forall \alpha > 1/2$ zeigen wir $\P(|S_n^{(x)}| \leq n^\alpha) \overset{n \to \infty}{\longrightarrow} 1$.
+
+Da $\E(X_i) = 0$ und Var$(X_i) = 1$ folgt für $a \in \R$ beliebig per ZGS
+$$\P\left(S_n^{(x)} \leq a \sqrt{n}\right) = \P\left(\frac{S_n^{(x)}}{\sqrt{n}} \leq a\right) \overset{n \to \infty}{\longrightarrow} \Phi(a)$$
+und somit auch
+\begin{align*}
+    \P\left(|S_n^{(x)}| \leq a\sqrt{n}\right) &= \P\left(S_n^{(x)} \leq a \sqrt{n}\right) -\P\left(S_n^{(x)} \leq - a \sqrt{n}\right) \\
+    &\overset{n \to \infty}{\longrightarrow} \Phi(a) - \Phi(-a) = 2\Phi(a)-1
+\end{align*}
+Sei $\alpha = 1/2 + \beta, \beta > 0$. Dann instanzieren wir mit $a = n^\beta$.
+\begin{align*}
+    \P(|S_n^{(x)}| \leq n^\alpha) &= \P(|S_n^{(x)}| \leq n^\beta\sqrt{n})\!\rightarrow\! \limn(2 \Phi(n^\beta)-1) = 1
+\end{align*}
+Dies gilt analog für $S_n^{(y)}$ und $S_n^{(z)}$.
+
+\textit{Schritt 2:} $\forall \alpha > 1/2, \P\left(\lVert(S_n^{(x)}, S_n^{(y)}, S_n^{(z)})\rVert_2 \leq n^\alpha\right)\!\overset{n \to \infty}{\longrightarrow}\! 1$
+
+Sei $\alpha' \in (1/2, \alpha)$. Dann folgt 
+\begin{align*}
+    &\left\{|S_n^{(x)}| \leq n^{\alpha'} \land |S_n^{(y)}| \leq n^{\alpha'} \land |S_n^{(z)}| \leq n^{\alpha'}\right\} \\
+    &\subseteq \left\{\left\lVert\left(S_n^{(x)}, S_n^{(y)}, S_n^{(z)}\right)\right\rVert_2 \leq \sqrt{3} \cdot n^{\alpha'}\right\}
+\end{align*}
+Da $n^\alpha \geq \sqrt{3}n^{\alpha'}$ für grosse $n$, folgt
+\begin{align*}
+    &\limn \P\left(\left\lVert\left(S_n^{(x)}, S_n^{(y)}, S_n^{(z)}\right)\right\rVert_2 \leq n^\alpha\right)\\
+     &\geq \limn \P\left(\left\lVert\left(S_n^{(x)}, S_n^{(y)}, S_n^{(z)}\right)\right\rVert_2 \leq \sqrt{3} \cdot n^{\alpha'}\right)\\
+     &\geq \limn \P\left(|S_n^{(x)}| \leq n^{\alpha'}, |S_n^{(y)}| \leq n^{\alpha'}, |S_n^{(z)}| \leq n^{\alpha'}\right) = 1
+\end{align*}
+
+\begin{subbox}{Momenterzeugende Funktion}
+Die momenterzeugende Funktion einer Zufallsvariablen $X$ ist für $t \in \mathbb{R}$ definiert durch
+\[ M_X(t) = \mathbb{E}\left[e^{tX}\right] = \int_{-\infty}^{\infty} e^{t x} f_X(x) \, dx. \]
+Immer wohldef. in $[0, \infty]$, kann aber $+\infty$ werden.
+\end{subbox}
+
+\textbf{Chernoff-Ungleichung}\\
+Seien $X_1, \ldots, X_n$ i.i.d. Zufallsvariablen, für welche $M_X(t)$ für alle $t \in \mathbb{R}$ endlich ist. Für jedes $b \in \mathbb{R}$ gilt
+\[ \mathbb{P}\left[S_n \geq b\right] \leq \exp \left(\inf_{t \in \mathbb{R}}\left(n \log M_X(t) - tb\right)\right). \]
+
+\textbf{Chernoff-Schranke}\\
+Seien $X_1, \ldots, X_n$ unabhängig mit $X_k \sim \operatorname{Ber}(p_k)$ und sei $S_n = \sum_{k=1}^n X_k$, $\mu_n = \mathbb{E}[S_n] = \sum_{k=1}^n p_k$ und $\delta > 0$, dann gilt
+\[ \mathbb{P}\left[S_n \geq (1 + \delta) \mu_n\right] \leq \left(\frac{e^\delta}{(1+\delta)^{1+\delta}}\right)^{\mu_n}. \]

@@ -1,0 +1,57 @@
+\section{Mehrere Zufallsvariablen}
+\begin{mainbox}{}
+    Die \textbf{gemeinsame Verteilungsfunktion} von $n$ Zufallsvariablen $X_1, \ldots, X_n$ (stetig oder diskret) ist die Abbildung $F: \R^n \to [0,1]$,
+    $$F(x_1, \ldots, x_n) := \P(X_1 \leq x_1, \ldots, X_n \leq x_n)$$
+\end{mainbox}
+\subsection{Diskreter Fall - Gewichtsfunktion}
+    Für $n$ diskrete ZV $X_1, \ldots, X_n$ definieren wir ihre \textbf{gemeinsame Gewichtsfunktion} $p: \R^n \to [0,1]$ durch
+    $$p(x_1, \ldots, x_n) := \P(X_1 = x_1, \ldots, X_n = x_n)$$
+    Dann ist die \textbf{gemeinsame Verteilungsfunktion}:
+    \begin{align*}
+        F(x_1, \ldots, x_n) &= \P(X_1 \leq x_1, \ldots, X_n \leq x_n)\\
+        &= \sum_{y_1 \leq x_1, \ldots, y_n \leq x_n}p(y_1, \ldots,y_n)
+    \end{align*}    
+
+\begin{subbox}{Verteilung des Bildes}
+Sei $n \geq 1$, $\varphi: \mathbb{R}^n \rightarrow \mathbb{R}$, $X_1, \ldots, X_n$ \textbf{diskrete} ZV mit Werten in $W_1, \ldots, W_n$. Dann ist $Z=\varphi(X_1, \ldots, X_n)$ diskret mit Werten in $W=\varphi(W_1 \times \ldots \times W_n)$. Die Verteilung von $Z$ für $z \in W$ ist:
+$$
+\mathbb{P}[Z=z]=\sum_{\substack{x_1 \in W_1, \ldots, x_n \in W_n \\ \varphi(x_1, \ldots, x_n)=z}} \mathbb{P}[X_1=x_1, \ldots, X_n=x_n]
+$$
+\end{subbox}
+
+\textbf{Randdichte.} Seien $X_1, \ldots, X_n$ diskrete ZV mit gemeinsamer Gewichtsfkt. $p$. Für jedes $k \in\{1, \ldots, n\}$ und jedes $x \in W_k$ gilt
+$$
+\mathbb{P}\left[X_k=x\right]= \hspace{-0.5cm} \sum_{\substack{x_{\ell} \in W_{\ell} \\ \ell \in\{1, \ldots, n\} \backslash\{k\}}} \hspace{-0.5cm} p\left(x_1, \ldots, x_{k-1}, x, x_{k+1}, \ldots, x_n\right)
+$$
+\textbf{Der Erw. des Bildes der Funktion} $\varphi: \R^n \to \R$ ist
+    $$\E(\varphi(X_1, \ldots, X_n)) = \sum_{x_1, \ldots, x_n}\varphi(x_1, \ldots, x_n)p(x_1, \ldots, x_n)$$
+Seien $X_1, \ldots, X_n$ diskrete ZV mit gemeinsamer Verteilung $\{p(x_1, \ldots, x_n)\}_{x_1 \in W_1, \ldots, x_n \in W_n}$. Dann ist \textbf{äquivalent}:
+\begin{itemize}
+    \item[(i)] $X_1, \ldots, X_n$ sind unabhängig,
+    \item[(ii)] für alle $x_1 \in W_1, \ldots, x_n \in W_n$ gilt
+    $$
+    p(x_1, \ldots, x_n)=\mathbb{P}[X_1=x_1] \cdot \ldots \cdot \mathbb{P}[X_n=x_n],
+    $$
+\end{itemize}
+\subsection{Stetiger Fall - Gemeinsame Dichte}
+\begin{mainbox}{Gemeinsame Dichte}
+    Falls die gemeinsame Verteilungsfunktion von $n$ Zufallsvariablen $X_1, \ldots, X_n$ sich schreiben lässt als
+    $$F(x_1, \ldots, x_n) = \int_{-\infty}^{x_1} \cdots \int_{-\infty}^{x_n}f(t_1, \ldots, t_n) \mathop{dt_n}\ldots\mathop{dt_1}$$
+\end{mainbox}
+\textbf{Randverteilung.} Haben $X, Y$ die gemeinsame Verteilungsfunktion $F_{X,Y}$, so ist $F_X: \R \to [0,1]$,
+$$F_X(x) := \P(X \leq x) = \P(X \leq x, Y \leq \infty) = \lim_{y \to \infty}F_{X,Y}(x,y)$$
+die Vertsfkt. der Randverteilung von $X$. \textit{Analog für $F_Y$.}
+
+\textbf{Randdichte.} Sei $X,Y$ ZV mit gemeinsamer Dichte $f(x,y)$,
+    $$f_X(x) = \int_{-\infty}^{\infty}f(x,y)\mathop{\text{d}y} \text{ bzw. } f_Y(y)=\int_{-\infty}^{\infty}f(x,y)\dx$$
+
+Seien $X_1, \ldots, X_n$ ZV mit Dichten $f_{X_1}, \ldots, f_{X_n}$. \\
+Dann sind folgende Aussagen \textbf{äquivalent}:
+\begin{itemize}
+    \item[(i)] $X_1, \ldots, X_n$ sind unabhängig,
+    \item[(ii)] $X_1, \ldots, X_n$ sind gemeinsam stetig mit gemeinsamer Dichte $f: \mathbb{R}^n \rightarrow \mathbb{R}_{+}$,
+    \item[]\hspace{1cm}d.h. die gemeinsame Dichtefunktion $f$ ist das Produkt der einzelnen Randdichten $f_{X_k}$, also
+    $$
+    f\left(x_1, \ldots, x_n\right)=f_{X_1}\left(x_1\right) \cdot \ldots \cdot f_{X_n}\left(x_n\right).
+    $$
+\end{itemize}

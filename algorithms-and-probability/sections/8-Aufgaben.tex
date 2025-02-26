@@ -1,0 +1,125 @@
+\section{Aufgaben}
+
+\textbf{Integrale(r) Ratgeber:}
+\begin{itemize}
+    \item \textit{Complete The Square}, e.g. umgekehrtes Bin. Theorem, evtl. notwendig um nächsten Punkt zu erreichen.
+    \item Integral über Verteilungsfunktion $\int_{\infty}^{\infty} f_{X}(x) \, dx = 1$
+    \item Gausssche Glockenkurve
+    \item Substitution
+    \item Partielle Integration
+\end{itemize}
+
+\textbf{Häufige Formen:}
+$$
+\begin{aligned}
+\mathbb{P}[a<X \leq b]&=\mathbb{P}[X \leq b]-\mathbb{P}[X \leq a]=F_X(b)-F_X(a)\\
+\mathbb{P}[X > Y] &= \textstyle \sum_{i=1}^n \mathbb{P}[X > Y \mid Y = i] \mathbb{P}[Y = i] \\
+\mathbb{P}[X > Y] &= \textstyle \int_{-\infty}^{\infty} \mathbb{P}[X > Y \mid Y = y] f_Y(y) \, \text{d}y
+\end{aligned}
+$$
+$$
+\begin{aligned}
+\mathbb{P}[\max (X,Y)\leq z] &= \mathbb{P}[X\leq z, Y \leq z]\\
+&= F_X(z) \cdot F_Y(z) \qquad\qquad \ (X, Y\text{ unbh.})\\
+\mathbb{P}[\min (X,Y)\leq z] &= 1 - \mathbb{P}[\min(X,Y)>z]\\
+&=1 - \mathbb{P}[X>z, Y>z]\\
+&=1 - \mathbb{P}[X>z] \mathbb{P}[Y>z]  \quad(X, Y\text{ unbh.})\\
+&=1 - \left(1-F_X(z)\right)\left(1-F_Y(z)\right)
+\end{aligned}
+$$
+$$
+\mathbb{P}[X+Y=t]=\textstyle \int_{k=0}^t f_X\left(k\right) f_Y\left(t-k\right)\, \text{d}k \quad (t\geq 0)\\
+$$
+Für $L=\min \left(X_1, \dots, X_n\right)$ und $M=\max \left(X_1, \dots, X_n\right)$:
+$$
+\begin{aligned} 
+\P[M<m, L \leq l] & =\P[M<m]-\P[M<m, L>l] \\ 
+&= \P[M<m]-\P[l\!<\!X_1\!<\!m, ..., l\!<\!X_n\!<\!m]\\
+&= \left( \P[X_1 < m] \right)^n - \left( \P[l < X_1 < m] \right)^n \ (\text{iid.}) 
+\end{aligned}
+$$
+Sei $X_{1},\dots, X_{n}$ iid. mit $X_{1}\sim \mathcal{U}([a,b])$:
+$$\textstyle \mathbb{P}[X_{1}>X_{2},X_{1}>X_{3},\dots X_{1}>X_{n}]=\frac{(n-1)!}{n!}$$
+
+\subsection{Multiple Choice Aufgaben}
+
+Seien \(X,Y\) zwei ZV mit gemeinsamer Dichte \(f_{X,Y}\). Welche Aussage ist korrekt?
+\begin{itemize}
+	\item[\checkmark] \(X,Y\) sind immer stetig
+	\item[\(\square\)] Die ZV sind nicht notwendigerweise stetig.
+\end{itemize}
+
+Sei $Y$ eine stetige Zufallsvariable. Für alle $s, t \in \R^+$:
+$$\exists \lambda > 0. \ Y \sim Exp(\lambda)\!\iff\! \P(Y > s) = \P(Y > s + t \mid Y > t)$$
+\begin{itemize}
+	\item[\checkmark] wahr.
+	\item[\(\square\)] falsch.
+\end{itemize}
+
+
+ \noindent
+ Seien \((X_i)_{i = 1}^n\) uiv. mit Verteilungsfunktion \(F_{X_i} = F\). Was ist die Verteilungsfunktion von \(M = \text{max}(X_1,...,X_n)\)?
+ \begin{itemize}
+ 	\item[\checkmark] \(F_M(a) = F(a)^n\)
+ 	\item[\(\square\)] \(F_M(a) = 1 - F(a)^n\)
+ 	\item[\(\square\)] \(F_M(a) = (1 - F(a))^n\)
+ \end{itemize}
+
+ \noindent
+ Seien \(X, Y\) unabhängig und lognormalverteilt (\(\ln X, \ln Y\) sind normalverteilt). Welche Aussage ist korrekt?
+ \begin{itemize}
+ 	\item[\checkmark] \(XY\) ist lognormalverteilt
+ 	\item[\(\square\)] \(XY\) ist normalverteilt
+ 	\item[\(\square\)] \(e^{X + Y}\) ist normalverteilt
+ \end{itemize}
+
+\textbf{Tabelle der Standard-Normalverteilungsfunktion} \\
+$\Phi(z)=P[Z \leq z]$ mit $Z \sim \mathcal{N}(0,1)$ und $\Phi(-x)=1-\Phi(x)$.
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|} 
+\hline
+$z$   & .00    & .02    & .05    & .07    & .09     \\ 
+\hline
+.0  & 0.5000 & 0.5080 & 0.5199 & 0.5279 & 0.5359  \\ 
+\hline
+.1 & 0.5398 & 0.5478 & 0.5596 & 0.5675 & 0.5753  \\ 
+\hline
+.2 & 0.5793 & 0.5871 & 0.5987 & 0.6064 & 0.6141  \\ 
+\hline
+.3  & 0.6179 & 0.6255 & 0.6368 & 0.6443 & 0.6517  \\ 
+\hline
+.4  & 0.6554 & 0.6628 & 0.6736 & 0.6808 & 0.6879  \\ 
+\hline
+.5 & 0.6915 & 0.6985 & 0.7088 & 0.7157 & 0.7224  \\ 
+\hline
+.6 & 0.7257 & 0.7324 & 0.7422 & 0.7486 & 0.7549  \\ 
+\hline
+.7  & 0.7580 & 0.7642 & 0.7734 & 0.7794 & 0.7852  \\ 
+\hline
+.8  & 0.7881 & 0.7939 & 0.8023 & 0.8078 & 0.8133  \\ 
+\hline
+.9  & 0.8159 & 0.8212 & 0.8289 & 0.8340 & 0.8389  \\ 
+\hline
+1.0 & 0.8413 & 0.8461 & 0.8531 & 0.8577 & 0.8621  \\ 
+\hline
+1.1 & 0.8643 & 0.8686 & 0.8749 & 0.8790 & 0.8830  \\ 
+\hline
+1.2 & 0.8849 & 0.8888 & 0.8944 & 0.8980 & 0.9015  \\ 
+\hline
+1.3 & 0.9032 & 0.9066 & 0.9115 & 0.9147 & 0.9177  \\ 
+\hline
+1.4 & 0.9192 & 0.9222 & 0.9265 & 0.9292 & 0.9319  \\ 
+\hline
+1.5 & 0.9332 & 0.9357 & 0.9394 & 0.9418 & 0.9441  \\ 
+\hline
+1.6 & 0.9452 & 0.9474 & 0.9505 & 0.9525 & 0.9545  \\ 
+\hline
+1.7 & 0.9554 & 0.9573 & 0.9599 & 0.9616 & 0.9633  \\ 
+\hline
+1.8 & 0.9641 & 0.9656 & 0.9678 & 0.9693 & 0.9706  \\ 
+\hline
+1.9 & 0.9713 & 0.9726 & 0.9744 & 0.9756 & 0.9767  \\
+\hline
+\end{tabular}
+\end{table}

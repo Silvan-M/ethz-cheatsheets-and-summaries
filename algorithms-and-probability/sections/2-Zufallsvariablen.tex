@@ -1,0 +1,166 @@
+\section{Zufallsvariablen}
+Sei $(\Omega, \mathcal{F}, \mathbb{P})$ ein  
+Wahrscheinlichkeitsraum. Eine (reellwertige) \textbf{Zufallsvariable} ist eine Abbildung $X: \Omega \rightarrow \mathbb{R}$, sodass für alle $x \in \mathbb{R}$ gilt,
+$$
+\{\omega \in \Omega \mid X(\omega) \leq x\} \in \mathcal{F} .
+$$
+
+Eine Funktion $X$ ist \textbf{messbar} (ZV sind messbar), wenn:
+$$
+X^{-1}(B):=\{\omega \in \Omega \mid X(\omega) \in B\} \in \mathcal{F} \text{ für alle } B \in \mathcal{B}(\mathbb{R}).
+$$
+Wobei $\mathcal{B}(\mathbb{R})$ die \textit{borelsche $\sigma$-Algebra} auf $\mathbb{R}$ bez. Bsp:
+
+\begin{itemize}
+    \item Alle offenen, abgeschl. und komp. Mengen in $\mathbb{R}$.
+    \item Alle Intervalle der Form $(a, b)$, $[a, b]$, $(a, b]$, $[a, b)$, $(-\infty, b)$, $(-\infty, b]$, $(a, \infty)$ und $[a, \infty)$ für $a, b \in \mathbb{R}$.
+\end{itemize}
+\subsection{Verteilungsfunktion}
+Die \textbf{Verteilungsfunktion} ist die Abbildung $F_X : \R \to [0,1]$ definiert durch:
+$$F_X(t) := \P(X \leq t), \forall t \in \R$$
+
+Die Funktion erfüllt folgende Eigenschaften:
+\begin{enumerate}[label=\roman*)]
+    \item $F_X$ ist monoton wachsend 
+    \item $F_X$ ist rechtsstetig, i.e. $\lim_{h \downarrow 0}F_X(x+h) = F_X(x)$
+    \item $\lim_{x \to -\infty}F_X(x) = 0$ und $\lim_{x \to \infty}F_X(x) = 1$
+\end{enumerate}
+\textit{Auch gilt:} $\forall a,b \in \R, a\!>\!b\!: \P(a < X \leq b) = F_X(b) -F_X(a)$
+\vspace{-0.6\baselineskip}
+
+
+\textbf{Linksstetigkeit}
+
+Die Verteilungsfunktion ist nicht immer linksstetig.
+\\Sei $F_X(a-) := \lim_{h \downarrow 0}F_X(a-h)$ für $a \in \R$ beliebig.
+
+Dann gilt:
+$$\P(X = a) = F_X(a) - F_X(a-)$$
+
+Intuitiv folgt daraus, dass wenn...
+\begin{itemize}
+    \item $F_X$ in Punkt $a \in \R$ nicht stetig ist, dann ist die ``Sprunghöhe'' $F_X(a)-F_X(a-)$ gleich der Wahrscheinlichkeit $\P(X = a)$.
+    \item $F_X$ stetig in Punkt $a \in \R$, dann gilt $\P(X = a) = 0$. 
+\end{itemize}
+
+\begin{mainbox}{}
+    Seien $X_1, ...,X_n$ \textit{Zufallsvariablen} auf einem Wahrscheinlichkeitsraum $(\Omega, \A, \P)$. Dann heissen $X_1, ...,X_n$ \textbf{unabhängig}, falls $\forall x_1, ..., x_n \in \R$:
+    $$
+        \P(X_1 \leq x_1, ..., X_n \leq x_n) = \P(X_1 \leq x_1)\cdot ... \cdot \P(X_n \leq x_n).
+	$$
+\end{mainbox}
+
+
+\subsection{Diskrete Zufallsvariablen}
+Sei $A \in \F$ ein Ereignis.\\
+Wir sagen $A$ tritt \textbf{fast sicher (f.s.)} ein, falls $\P(A)= 1$.
+\\
+Seien $X, Y: \Omega \to \R$ Zufallsvariablen: \\$X \leq Y$ f.s. $\iff$ $\P(X \leq Y)=1$
+
+
+\begin{mainbox}{}
+    Eine Zufallsvariable $X: \Omega \to \R$ heisst \textbf{diskret}, falls eine endliche oder abzählbare Menge $W \subset \R$ existiert, sodass
+    $$\P(X \in W) = 1$$
+    Falls $\Omega$ endlich oder abzählbar ist, dann ist $X$ immer diskret.
+\end{mainbox}
+Die \textbf{Verteilungsfunktion} einer diskreten ZV $X$: $$F_X(x)= \P(X \leq x)= \sum_{y\in W}p(y)\cdot \mathds{1}_{y\leq x}$$
+Die \textbf{Gewichtsfunktion} einer diskreten ZV $X$: $$\forall x \in X(\Omega): p(x)= \P(X=x) \text{ wobei} \sum_{x \in X(\Omega)}p(x)= 1$$
+
+\subsection{Diskrete Verteilungen}
+\textbf{Bernoulli-Verteilung:} $X \sim \text{Ber}(p)$
+
+$X(\Omega)= \{0, 1\}$ und die Gewichtsfunktion ist definiert durch
+$$p(1):= \P(X = 1) = p \text{ und } p(0):=\P(X = 0) = 1 - p.$$
+\textbf{Binomialverteilung:} $X \sim \text{Bin}(n, p)$
+
+Wiederholung von $n$ unabhängigen Bernoulli-Experimenten mit gleichem Parameter $p$. 
+$$p(k):= \P(X = k) = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k} \quad \forall k \in \{0,1,\ldots, n\}$$
+\textbf{Geometrische Verteilung:} $X \sim \text{Geo}(p)$
+
+Warten auf den ersten Erfolg. 
+$$p(k):= \P(X = k) = (1-p)^{k-1}\cdot p \quad \forall k \in \N\setminus\{0\}$$
+\textbf{Poisson-Verteilung:} $X \sim \text{Poisson}(\lambda)$ 
+
+Grenzwert der Binomialvert. für grosse $n$ und kleine $p$. 
+$$p(k) := \P(X = k) = \frac{\lambda^k}{k!}\cdot e^{-\lambda} \quad \forall k \in \N_0, \lambda > 0$$
+\begin{enumerate}
+    \item ($\star$) Für $X_n \sim \text{Bin}(n, \frac{\lambda}{n})$ gilt $\lim_{n \to \infty}\P(X_n = k) = \P(Y = k)$ wobei $Y \sim \text{Poisson}(\lambda)$.
+    \item ($\star$) Seien $X_1 \sim \text{Poisson}(\lambda_1)$ und $X_2 \sim \text{Poisson}(\lambda_2)$ unabhängig. Dann gilt $(X_1 + X_2) \sim \text{Poisson}(\lambda_1 +\lambda_2)$.
+\end{enumerate}
+
+\subsection{Stetige Zufallsvariablen}
+\begin{mainbox}{}
+    Eine Zufallsvariable $X: \Omega \to \R$ heisst \textbf{stetig}, wenn ihre Verteilungsfunktion $F_X$ wie folgt geschrieben werden kann
+    $$F_X(x) = \int_{-\infty}^{x}f_X(t)\mathop{\text{d}t} \text{ für alle }x \in \R.$$
+    wobei $f_X: \R \to \R^+$ eine nicht-negative Funktion ist. $f$ wird dann als \textbf{Dichte} von $X$ benannt.\\
+    Wenn $f_X: (\R, \mathcal{B}) \to (\R, \mathcal{B})$ messbar ist, ist die Zufallsvariable $X$ \textbf{absolut stetig}.
+\end{mainbox}
+\textbf{Intuition:} $f_X(t)\mathop{\text{d}t}$ ist die Wahr'keit, dass $X \in [t, t + \text{d}t]$.
+
+\subsection{Stetige Verteilungen}
+\textbf{Gleichverteilung:} $X \sim \mathcal{U}([a,b])$
+
+Die Dichte ist auf dem Intervall $[a, b]$ gleich. 
+$$f_{a,b}(x) = \begin{cases}
+    0 & x \notin [a,b]\\
+    \frac{1}{b-a} & x \in [a,b]
+\end{cases}$$
+\textbf{Exponentialverteilung:} $T \sim \text{Exp}(\lambda)$
+
+Lebensdauer oder Wartezeit eines allg. Ereignisses (Stetiges Äquivalent zur Geometrischen Verteilung).
+$$f_\lambda(x) = \begin{cases}
+    \lambda e^{-\lambda x} & x \ge 0,\\
+    0 & x < 0.
+\end{cases}$$ 
+\textbf{Normalverteilung:} $X \sim \mathcal{N}(\mu, \sigma^2)$
+
+Häufig verwendete Verteilung. Undefiniert für $\sigma = 0$.
+$$f_{\mu, \sigma}(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+\begin{enumerate}
+    \item Seien $X_1, \ldots, X_n$ \textbf{unabhängige} normalverteilte ZV mit Parametern $(\mu_1,\sigma_1^2), \ldots, (\mu_n, \sigma_n^2)$, dann ist 
+    $$Z = \mu_0 + \lambda_1 X_1 + \ldots + \lambda_n X_n$$
+    eine normalverteilte ZV mit Parametern $\mu = \mu_0 + \lambda_1 \mu_1 + \ldots + \lambda_n \mu_n$ und $\sigma^2 = \lambda_1^2 \sigma_1^2 + \ldots + \lambda_n^2 \sigma_n^2$.
+    \item Sei $Z \sim \mathcal{N}(0,1)$ eine \textbf{standardnormalverteilte} Zufallsvariable. Dann gilt für $X \sim \mathcal{N}(\mu, \sigma^2)$ 
+    $$X = \mu + \sigma \cdot Z$$   
+    \item Für $X \sim \mathcal{N}\left(\mu, \sigma^2\right)$ gilt $\frac{X-\mu}{\sigma} \sim \mathcal{N}(0,1)$, also
+$$
+F_X(x)=\mathbb{P}\left[\frac{X-\mu}{\sigma} \leq \frac{x-\mu}{\sigma}\right]=\Phi\left(\frac{x-\mu}{\sigma}\right) .
+$$
+
+\item $\Phi(-x) = 1 - \Phi(x)$
+\end{enumerate}
+
+
+\begin{mainbox}{Gedächtnislosigkeit}
+Sei $T \sim \operatorname{Geom}(p)$ mit $p \in(0,1)$. Dann gilt für alle $n \geq 0$ und alle $k \geq 1$
+$$
+\mathbb{P}[T \geq n+k \mid T>n]=\mathbb{P}[T \geq k] .
+$$
+
+($\star$) Hält auch für $T\sim \operatorname{Exp}(\lambda)$.
+\end{mainbox}
+
+Hier noch zum Thema MLE-Schätzer und dessen Eigenschaften, siehe S. \pageref{sec:mle-schaetzer} für eine Übersicht der Schätzer.
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Verteilung & Erwartungstreu & Konsistent \\
+\hline
+\hline
+Bernoulli & Ja & Ja \\
+\hline
+Binomial & Nur $p$ & $n$ und $p$ \\
+\hline
+Geometrisch & Nein & Ja \\
+\hline
+Poisson & Ja & Ja \\
+\hline
+Gleichverteilung & Nein & Ja \\
+\hline
+Exponentiell & Ja & Ja \\
+\hline
+Normalverteilung & Nur $\mu$ & $\mu$ und $\sigma^2$ \\
+\hline
+\end{tabular}
+\end{table}
